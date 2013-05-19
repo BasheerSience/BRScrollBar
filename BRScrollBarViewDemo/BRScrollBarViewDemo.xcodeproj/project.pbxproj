@@ -1,0 +1,383 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2222BC81174933EB00FE223C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2222BC80174933EB00FE223C /* UIKit.framework */; };
+		2222BC83174933EB00FE223C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2222BC82174933EB00FE223C /* Foundation.framework */; };
+		2222BC85174933EB00FE223C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2222BC84174933EB00FE223C /* CoreGraphics.framework */; };
+		2222BC8B174933EB00FE223C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2222BC89174933EB00FE223C /* InfoPlist.strings */; };
+		2222BC8D174933EB00FE223C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222BC8C174933EB00FE223C /* main.m */; };
+		2222BC91174933EB00FE223C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222BC90174933EB00FE223C /* AppDelegate.m */; };
+		2222BC93174933EB00FE223C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2222BC92174933EB00FE223C /* Default.png */; };
+		2222BC95174933EB00FE223C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2222BC94174933EB00FE223C /* Default@2x.png */; };
+		2222BC97174933EB00FE223C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2222BC96174933EB00FE223C /* Default-568h@2x.png */; };
+		2222BC9A174933EB00FE223C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222BC99174933EB00FE223C /* ViewController.m */; };
+		2222BC9D174933EB00FE223C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2222BC9B174933EB00FE223C /* ViewController.xib */; };
+		2222BCB31749348300FE223C /* BRCommonMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222BCA61749348300FE223C /* BRCommonMethods.m */; };
+		2222BCB41749348300FE223C /* BRScrollBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222BCA91749348300FE223C /* BRScrollBarController.m */; };
+		2222BCB51749348300FE223C /* BRScrollBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222BCAC1749348300FE223C /* BRScrollBarView.m */; };
+		2222BCB61749348300FE223C /* BRScrollHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222BCAF1749348300FE223C /* BRScrollHandle.m */; };
+		2222BCB71749348300FE223C /* BRScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222BCB21749348300FE223C /* BRScrollLabel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2222BC7D174933EB00FE223C /* BRScrollBarViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BRScrollBarViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2222BC80174933EB00FE223C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2222BC82174933EB00FE223C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2222BC84174933EB00FE223C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2222BC88174933EB00FE223C /* BRScrollBarViewDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BRScrollBarViewDemo-Info.plist"; sourceTree = "<group>"; };
+		2222BC8A174933EB00FE223C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2222BC8C174933EB00FE223C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2222BC8E174933EB00FE223C /* BRScrollBarViewDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BRScrollBarViewDemo-Prefix.pch"; sourceTree = "<group>"; };
+		2222BC8F174933EB00FE223C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2222BC90174933EB00FE223C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2222BC92174933EB00FE223C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		2222BC94174933EB00FE223C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		2222BC96174933EB00FE223C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2222BC98174933EB00FE223C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2222BC99174933EB00FE223C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2222BC9C174933EB00FE223C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		2222BCA51749348300FE223C /* BRCommonMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRCommonMethods.h; sourceTree = "<group>"; };
+		2222BCA61749348300FE223C /* BRCommonMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRCommonMethods.m; sourceTree = "<group>"; };
+		2222BCA81749348300FE223C /* BRScrollBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRScrollBarController.h; sourceTree = "<group>"; };
+		2222BCA91749348300FE223C /* BRScrollBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRScrollBarController.m; sourceTree = "<group>"; };
+		2222BCAB1749348300FE223C /* BRScrollBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRScrollBarView.h; sourceTree = "<group>"; };
+		2222BCAC1749348300FE223C /* BRScrollBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRScrollBarView.m; sourceTree = "<group>"; };
+		2222BCAE1749348300FE223C /* BRScrollHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRScrollHandle.h; sourceTree = "<group>"; };
+		2222BCAF1749348300FE223C /* BRScrollHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRScrollHandle.m; sourceTree = "<group>"; };
+		2222BCB11749348300FE223C /* BRScrollLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRScrollLabel.h; sourceTree = "<group>"; };
+		2222BCB21749348300FE223C /* BRScrollLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRScrollLabel.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2222BC7A174933EB00FE223C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2222BC81174933EB00FE223C /* UIKit.framework in Frameworks */,
+				2222BC83174933EB00FE223C /* Foundation.framework in Frameworks */,
+				2222BC85174933EB00FE223C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2222BC74174933EB00FE223C = {
+			isa = PBXGroup;
+			children = (
+				2222BC86174933EB00FE223C /* BRScrollBarViewDemo */,
+				2222BC7F174933EB00FE223C /* Frameworks */,
+				2222BC7E174933EB00FE223C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2222BC7E174933EB00FE223C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2222BC7D174933EB00FE223C /* BRScrollBarViewDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2222BC7F174933EB00FE223C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2222BC80174933EB00FE223C /* UIKit.framework */,
+				2222BC82174933EB00FE223C /* Foundation.framework */,
+				2222BC84174933EB00FE223C /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2222BC86174933EB00FE223C /* BRScrollBarViewDemo */ = {
+			isa = PBXGroup;
+			children = (
+				2222BC8F174933EB00FE223C /* AppDelegate.h */,
+				2222BC90174933EB00FE223C /* AppDelegate.m */,
+				2222BC98174933EB00FE223C /* ViewController.h */,
+				2222BC99174933EB00FE223C /* ViewController.m */,
+				2222BC9B174933EB00FE223C /* ViewController.xib */,
+				2222BCA31749348300FE223C /* BRScrollBarClasses */,
+				2222BC87174933EB00FE223C /* Supporting Files */,
+			);
+			path = BRScrollBarViewDemo;
+			sourceTree = "<group>";
+		};
+		2222BC87174933EB00FE223C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2222BC88174933EB00FE223C /* BRScrollBarViewDemo-Info.plist */,
+				2222BC89174933EB00FE223C /* InfoPlist.strings */,
+				2222BC8C174933EB00FE223C /* main.m */,
+				2222BC8E174933EB00FE223C /* BRScrollBarViewDemo-Prefix.pch */,
+				2222BC92174933EB00FE223C /* Default.png */,
+				2222BC94174933EB00FE223C /* Default@2x.png */,
+				2222BC96174933EB00FE223C /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2222BCA31749348300FE223C /* BRScrollBarClasses */ = {
+			isa = PBXGroup;
+			children = (
+				2222BCA41749348300FE223C /* BRCommmon */,
+				2222BCA71749348300FE223C /* BRScrollBarController */,
+				2222BCAA1749348300FE223C /* BRScrollBarView */,
+				2222BCAD1749348300FE223C /* BRScrollHandle */,
+				2222BCB01749348300FE223C /* BRScrollLabel */,
+			);
+			path = BRScrollBarClasses;
+			sourceTree = "<group>";
+		};
+		2222BCA41749348300FE223C /* BRCommmon */ = {
+			isa = PBXGroup;
+			children = (
+				2222BCA51749348300FE223C /* BRCommonMethods.h */,
+				2222BCA61749348300FE223C /* BRCommonMethods.m */,
+			);
+			path = BRCommmon;
+			sourceTree = "<group>";
+		};
+		2222BCA71749348300FE223C /* BRScrollBarController */ = {
+			isa = PBXGroup;
+			children = (
+				2222BCA81749348300FE223C /* BRScrollBarController.h */,
+				2222BCA91749348300FE223C /* BRScrollBarController.m */,
+			);
+			path = BRScrollBarController;
+			sourceTree = "<group>";
+		};
+		2222BCAA1749348300FE223C /* BRScrollBarView */ = {
+			isa = PBXGroup;
+			children = (
+				2222BCAB1749348300FE223C /* BRScrollBarView.h */,
+				2222BCAC1749348300FE223C /* BRScrollBarView.m */,
+			);
+			path = BRScrollBarView;
+			sourceTree = "<group>";
+		};
+		2222BCAD1749348300FE223C /* BRScrollHandle */ = {
+			isa = PBXGroup;
+			children = (
+				2222BCAE1749348300FE223C /* BRScrollHandle.h */,
+				2222BCAF1749348300FE223C /* BRScrollHandle.m */,
+			);
+			path = BRScrollHandle;
+			sourceTree = "<group>";
+		};
+		2222BCB01749348300FE223C /* BRScrollLabel */ = {
+			isa = PBXGroup;
+			children = (
+				2222BCB11749348300FE223C /* BRScrollLabel.h */,
+				2222BCB21749348300FE223C /* BRScrollLabel.m */,
+			);
+			path = BRScrollLabel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2222BC7C174933EB00FE223C /* BRScrollBarViewDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2222BCA0174933EB00FE223C /* Build configuration list for PBXNativeTarget "BRScrollBarViewDemo" */;
+			buildPhases = (
+				2222BC79174933EB00FE223C /* Sources */,
+				2222BC7A174933EB00FE223C /* Frameworks */,
+				2222BC7B174933EB00FE223C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BRScrollBarViewDemo;
+			productName = BRScrollBarViewDemo;
+			productReference = 2222BC7D174933EB00FE223C /* BRScrollBarViewDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2222BC75174933EB00FE223C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Basheer Malaa";
+			};
+			buildConfigurationList = 2222BC78174933EB00FE223C /* Build configuration list for PBXProject "BRScrollBarViewDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2222BC74174933EB00FE223C;
+			productRefGroup = 2222BC7E174933EB00FE223C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2222BC7C174933EB00FE223C /* BRScrollBarViewDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2222BC7B174933EB00FE223C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2222BC8B174933EB00FE223C /* InfoPlist.strings in Resources */,
+				2222BC93174933EB00FE223C /* Default.png in Resources */,
+				2222BC95174933EB00FE223C /* Default@2x.png in Resources */,
+				2222BC97174933EB00FE223C /* Default-568h@2x.png in Resources */,
+				2222BC9D174933EB00FE223C /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2222BC79174933EB00FE223C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2222BC8D174933EB00FE223C /* main.m in Sources */,
+				2222BC91174933EB00FE223C /* AppDelegate.m in Sources */,
+				2222BC9A174933EB00FE223C /* ViewController.m in Sources */,
+				2222BCB31749348300FE223C /* BRCommonMethods.m in Sources */,
+				2222BCB41749348300FE223C /* BRScrollBarController.m in Sources */,
+				2222BCB51749348300FE223C /* BRScrollBarView.m in Sources */,
+				2222BCB61749348300FE223C /* BRScrollHandle.m in Sources */,
+				2222BCB71749348300FE223C /* BRScrollLabel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2222BC89174933EB00FE223C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2222BC8A174933EB00FE223C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2222BC9B174933EB00FE223C /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2222BC9C174933EB00FE223C /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2222BC9E174933EB00FE223C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2222BC9F174933EB00FE223C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2222BCA1174933EB00FE223C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BRScrollBarViewDemo/BRScrollBarViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "BRScrollBarViewDemo/BRScrollBarViewDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2222BCA2174933EB00FE223C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BRScrollBarViewDemo/BRScrollBarViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "BRScrollBarViewDemo/BRScrollBarViewDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2222BC78174933EB00FE223C /* Build configuration list for PBXProject "BRScrollBarViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2222BC9E174933EB00FE223C /* Debug */,
+				2222BC9F174933EB00FE223C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2222BCA0174933EB00FE223C /* Build configuration list for PBXNativeTarget "BRScrollBarViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2222BCA1174933EB00FE223C /* Debug */,
+				2222BCA2174933EB00FE223C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2222BC75174933EB00FE223C /* Project object */;
+}
