@@ -178,6 +178,7 @@
         {
             _isDragging = YES;
             // the sequence here is important
+            [self.scrollLabel hideLabel];
             [self.scrollLabel resetText];
             [self moveLabelToPoint:locationOftouch animated:YES];     // 1-
             [self moveContentOffsetOfTableViewWithHandle];            // 2-
@@ -288,6 +289,7 @@
             self.scrollHandle.frame = handleRect;
         }];
     }
+    
     [self.scrollLabel hideLabel];
     _fadingScrollBarTime = [NSTimer scheduledTimerWithTimeInterval:0.7
                                                             target:self
