@@ -92,8 +92,6 @@
 - (void)showLabel
 {
     // only show text if is it not empty or not nil
-    NSLog(@"showing label:%@", self.text);
-    
     if(self.text && ![self.text isEqualToString:@""] && self.text.length > 0)
     {
         [UIView animateWithDuration:0.2 animations:^{
