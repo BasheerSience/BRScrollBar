@@ -22,19 +22,26 @@
         self.layer.shouldRasterize = YES;
         self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
         self.layer.cornerRadius = 10;
-        self.backgroundColor = [UIColor blueColor];//[UIColor colorWithRed:0 green:0 blue:0 alpha:1];//[UIColor blackColor];
+        self.backgroundColor = [UIColor blueColor];
         
         self.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|
                                 UIViewAutoresizingFlexibleTopMargin;
         
-        CGRect labelRect = CGRectMake( 4,3,
+        
+        CGRect labelRect = CGRectMake(0,
+                                      0,
                                       kIntBRLabelWidth,
-                                      kIntBRLabelHeight/2);
-        _textLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin |
-                                      UIViewAutoresizingFlexibleBottomMargin |
-                                      UIViewAutoresizingFlexibleWidth;
-        self.clipsToBounds = YES;
+                                      self.frame.size.height);
         _textLabel = [[UILabel alloc] initWithFrame:labelRect];
+        
+        _textLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin  |
+                                      UIViewAutoresizingFlexibleBottomMargin|
+                                      UIViewAutoresizingFlexibleHeight      |
+                                      UIViewAutoresizingFlexibleLeftMargin  |
+                                      UIViewAutoresizingFlexibleRightMargin;
+        
+        self.clipsToBounds = YES;
+        
         _textLabel.backgroundColor = [UIColor clearColor];
         _textLabel.textColor = [UIColor whiteColor];
         
@@ -80,7 +87,7 @@
     _textLabel.text = text;
     
     
-    [_textLabel sizeToFit];
+    //[_textLabel sizeToFit];
     [self showLabel];
 }
 
@@ -115,13 +122,25 @@
 // makes the label bigger or smaller
 - (void)setLabelSizeToMatchText
 {
-        CGRect labelFrame = self.frame;
-        labelFrame.size.width = _textLabel.frame.size.width + 40;
+    CGRect labelFrame = self.frame;
+    labelFrame.size.width = _textLabel.frame.size.width ;
     
-        NSInteger labelPosiFactor  = (labelFrame.origin.x < 0)? -1:1;
-        labelFrame.origin.x = ((labelFrame.size.width + 30) * labelPosiFactor);
+    NSInteger labelPosiFactor  = (labelFrame.origin.x < 0)? -1:1;
+    labelFrame.origin.x = 200 * labelPosiFactor;//((labelFrame.size.width + 5) * labelPosiFactor);
     
-        self.frame = labelFrame;
+    self.frame = labelFrame;
+}
+
+- (CGFloat ) labelWidth
+{
+    return _textLabel.bounds.size.width;
+}
+
+- (void) setLabelWidth:(CGFloat)labelWidth
+{
+    CGRect textLabelRect = _textLabel.frame;
+    textLabelRect.size.width = labelWidth;
+    _textLabel.frame = textLabelRect;
 }
 
 

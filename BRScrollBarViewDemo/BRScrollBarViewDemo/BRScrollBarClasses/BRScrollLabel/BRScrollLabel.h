@@ -13,7 +13,7 @@
     UILabel *_textLabel;
 }
 @property (nonatomic, strong) NSString *text;
-@property (nonatomic, assign) CGSize labelSize;
+@property (nonatomic, assign) CGFloat labelWidth;
 
 - (id) initWithPosition:(CGPoint)position;
 - (void)resetText;
