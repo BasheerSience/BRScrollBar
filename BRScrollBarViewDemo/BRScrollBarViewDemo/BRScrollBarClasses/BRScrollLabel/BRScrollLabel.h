@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BRCommonMethods.h"
 
 @interface BRScrollLabel : UIView
 {
@@ -15,7 +16,7 @@
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, assign) CGFloat labelWidth;
 
-- (id) initWithPosition:(CGPoint)position;
+- (void)setBackgroundImage:(UIImage*)backgroundImage;
 - (void)resetText;
 - (void)showLabel;
 - (void)hideLabel;

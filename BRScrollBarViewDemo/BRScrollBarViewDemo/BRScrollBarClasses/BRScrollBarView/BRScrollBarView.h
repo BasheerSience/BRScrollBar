@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BRScrollHandle.h"
+#import "BRCommonMethods.h"
 
 @protocol BRScrollBarProtocol;
 @interface BRScrollBarView : UIView 

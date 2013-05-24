@@ -23,6 +23,7 @@
 		2222BCB51749348300FE223C /* BRScrollBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222BCAC1749348300FE223C /* BRScrollBarView.m */; };
 		2222BCB61749348300FE223C /* BRScrollHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222BCAF1749348300FE223C /* BRScrollHandle.m */; };
 		2222BCB71749348300FE223C /* BRScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222BCB21749348300FE223C /* BRScrollLabel.m */; };
+		528F217A174F719400D13F31 /* black_square.png in Resources */ = {isa = PBXBuildFile; fileRef = 528F2179174F719400D13F31 /* black_square.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		2222BCAF1749348300FE223C /* BRScrollHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRScrollHandle.m; sourceTree = "<group>"; };
 		2222BCB11749348300FE223C /* BRScrollLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRScrollLabel.h; sourceTree = "<group>"; };
 		2222BCB21749348300FE223C /* BRScrollLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRScrollLabel.m; sourceTree = "<group>"; };
+		528F2179174F719400D13F31 /* black_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_square.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		2222BC87174933EB00FE223C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				528F2179174F719400D13F31 /* black_square.png */,
 				2222BC88174933EB00FE223C /* BRScrollBarViewDemo-Info.plist */,
 				2222BC89174933EB00FE223C /* InfoPlist.strings */,
 				2222BC8C174933EB00FE223C /* main.m */,
@@ -236,6 +239,7 @@
 				2222BC95174933EB00FE223C /* Default@2x.png in Resources */,
 				2222BC97174933EB00FE223C /* Default-568h@2x.png in Resources */,
 				2222BC9D174933EB00FE223C /* ViewController.xib in Resources */,
+				528F217A174F719400D13F31 /* black_square.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +380,7 @@
 				2222BCA2174933EB00FE223C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

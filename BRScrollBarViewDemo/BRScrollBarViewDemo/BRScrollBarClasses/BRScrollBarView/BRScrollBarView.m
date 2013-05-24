@@ -14,6 +14,7 @@
 #define SCROLL_BAR_TOUCHED_WIDTH 12
 #define SCROLL_BAR_MARGIN_TOP    1
 #define SCROL_BAR_MARGIN_BOTTOM  1
+#define SCROLLBAR_MARGIN_RIGHT 1
 
 @implementation BRScrollBarView
 
@@ -25,7 +26,7 @@
         _scrollBarView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                                   SCROLL_BAR_MARGIN_TOP,
                                                                   frame.size.width,
-                                                                  frame.size.height)];
+                                                                  frame.size.height - SCROLL_BAR_MARGIN_TOP*2)];
         
         _scrollBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
                                           UIViewAutoresizingFlexibleHeight;
@@ -55,12 +56,16 @@
 
 - (void) initScrollLabel
 {
-    CGFloat xPosForLabel = (kIntBRLabelWidth +2);
+    CGFloat xPosForLabel = kIntBRLabelWidth + kIntBRScrollLabelMargin;
+    
     if((self.frame.origin.x - xPosForLabel) > 0)
     {
         xPosForLabel *= -1;
     }
-    
+    else
+    {
+        xPosForLabel = kIntBRScrollLabelMargin + self.frame.size.width;
+    }
     CGRect labelFrame = CGRectMake(xPosForLabel,
                                    0,
                                    0,
@@ -346,9 +351,9 @@
     {
         position.y = self.frame.size.height - brHandleRect.size.height ;
     }
-    else if ((position.y) < 0)
+    else if ((position.y) < SCROLL_BAR_MARGIN_TOP)
     {
-        position.y = 0;
+        position.y = SCROLL_BAR_MARGIN_TOP;
     }
     
     brHandleRect.origin.y = position.y;
@@ -395,5 +400,7 @@
         self.scrollLabel.frame = labelRect;
     }
 }
+
+
 
 @end

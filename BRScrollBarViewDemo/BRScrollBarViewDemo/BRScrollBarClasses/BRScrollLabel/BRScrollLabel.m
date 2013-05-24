@@ -23,6 +23,7 @@
         self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
         self.layer.cornerRadius = 10;
         self.backgroundColor = [UIColor blueColor];
+     
         
         self.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|
                                 UIViewAutoresizingFlexibleTopMargin;
@@ -56,19 +57,6 @@
     return self;
 }
 
-- (id) initWithPosition:(CGPoint)position
-{
-    CGRect viewRect = CGRectMake(position.x,
-                                 position.y,
-                                 kIntBRLabelWidth,
-                                 kIntBRLabelHeight);
-    self = [self initWithFrame:viewRect];
-    if(self)
-    {
-        
-    }
-    return self;
-}
 
 - (void)resetText
 {
@@ -125,8 +113,9 @@
     CGRect labelFrame = self.frame;
     labelFrame.size.width = _textLabel.frame.size.width ;
     
-    NSInteger labelPosiFactor  = (labelFrame.origin.x < 0)? -1:1;
-    labelFrame.origin.x = 200 * labelPosiFactor;//((labelFrame.size.width + 5) * labelPosiFactor);
+   // NSInteger labelPosiFactor  = (labelFrame.origin.x < 0)? -1:1;
+    //labelFrame.origin.x = 0;//((labelFrame.size.width/2) * labelPosiFactor);
+    
     
     self.frame = labelFrame;
 }
@@ -143,5 +132,9 @@
     _textLabel.frame = textLabelRect;
 }
 
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    
+}
 
 @end

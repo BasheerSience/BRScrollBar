@@ -8,12 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BRScrollBarView.h"
-
-typedef enum
-{
-    kIntBRScrollBarPositionLeft,
-    kIntBRScrollBarPositionRight
-}BRScrollBarPostions;
+#import "BRCommonMethods.h"
 
 @protocol BRScrollBarControllerDelegate ;
 @interface BRScrollBarController : UIViewController  <BRScrollBarProtocol>
@@ -26,6 +21,7 @@ typedef enum
 
 - (id)initForScrollView:(UIScrollView *)scrollView;
 - (id)initForScrollView:(UIScrollView *)scrollView inPosition:(BRScrollBarPostions)position;
++ (id)initForScrollView:(UIScrollView *)scrollView onPosition:(BRScrollBarPostions)position delegate:(id<BRScrollBarControllerDelegate>)delegate;
 
 
 @end

@@ -16,18 +16,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    //BRScrollBarController *scrollBarController = [[BRScrollBarController alloc] initForTableView:self.tableView];
-    //brScrollBar = scrollBarController;
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    BRScrollBarController *brScrollBar1 = [[BRScrollBarController alloc] initForScrollView:self.tableView];
-    brScrollBar = brScrollBar1;
-    brScrollBar.delegate = self;
-    
+    brScrollBar =[BRScrollBarController initForScrollView:self.tableView
+                                               onPosition:kIntBRScrollBarPositionRight
+                                                 delegate:self];
+    [brScrollBar.scrollBar.scrollLabel setBackgroundImage:[UIImage imageNamed:@"black_square"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,11 +28,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    // BRScrollBarController *scrollBarController = [[BRScrollBarController alloc] initForTableView:self.tableView];
-    // brScrollBar = scrollBarController;
-}
 
 
 #pragma mark - BRScrollBarcontroller
@@ -62,7 +49,7 @@
 {
     
     // Return the number of rows in the section.
-    return 5;
+    return 50;
     
 }
 
@@ -84,11 +71,5 @@
     cell.textLabel.text = [NSString stringWithFormat:@"cell %d",indexPath.row];
 }
 
-
-
-- (void)tableView:(UITableView*)tableView didEndDisplayingFooterView:(UIView *)view forSection:(NSInteger)section
-{
-    
-}
 
 @end

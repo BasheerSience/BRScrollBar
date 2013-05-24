@@ -13,9 +13,17 @@
 #define SCROLLBAR_MARGIN_TOP 2
 #define SCROLLBAR_MARGIN_RIGHT 1
 
+static BRScrollBarController *_instance;
 
 @implementation BRScrollBarController
 
++ (id)initForScrollView:(UIScrollView *)scrollView onPosition:(BRScrollBarPostions)position delegate:(id<BRScrollBarControllerDelegate>)delegate
+{
+    _instance = [[BRScrollBarController alloc] initForScrollView:scrollView inPosition:position ];
+    _instance.delegate = delegate;
+    return _instance;
+    
+}
 
 - (id) initForScrollView:(UIScrollView *)scrollView
 {
@@ -107,14 +115,18 @@
     
     if(self.scrollBar.showLabel)
     {
-        // now show the label
-        CGPoint handlePosition = [_scrollView convertPoint:self.scrollBar.scrollLabel.center fromView:self.scrollBar];
+        if([self.delegate respondsToSelector:@selector(brScrollBarController:textForCurrentPosition:)])
+        {
+            // now show the label
+            CGPoint handlePosition = [_scrollView convertPoint:self.scrollBar.scrollLabel.center
+                                                      fromView:self.scrollBar];
     
-        NSString *strLabeltext = nil;
+            NSString *strLabeltext = nil;
     
-        // delegate should return string for this position
-        strLabeltext = [self.delegate brScrollBarController:self textForCurrentPosition:handlePosition];
-        self.scrollBar.scrollLabel.text = strLabeltext;    // set the label string
+            // delegate should return string for this position
+            strLabeltext = [self.delegate brScrollBarController:self textForCurrentPosition:handlePosition];
+            self.scrollBar.scrollLabel.text = strLabeltext;    // set the label string
+        }
     }
     
 
