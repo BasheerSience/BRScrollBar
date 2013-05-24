@@ -25,7 +25,7 @@ What Will you need:
 
 How to Use it:
 ==================
-1. You can call class method like this:
+<b>1. You can call class method like this:</b>
 
 ```Objective-C
     [BRScrollBarController initForScrollView:self.tableView
@@ -33,13 +33,13 @@ How to Use it:
                                     delegate:self];
 ``` 
 
-2. Or instance method like this:
+<b>2. Or instance method like this:</b>
 
 ```Objective-C
     [[BRScrollBarController alloc] initForScrollView:self.tableView
                                           inPosition:kIntBRScrollBarPositionLeft];
 ```
-3. Change the the bar and the handle color:
+<b>3. Change the the bar and the handle color:</b>
 
 ```Objective-C
     BRScrollBarController *brScrollbar = [BRScrollBarController initForScrollView:self.tableView
@@ -50,7 +50,7 @@ How to Use it:
     brScrollbar.scrollHandle.alpha = 0.5;
     brScrollbar.scrollLabel.backgroundColor = [UIColor whiteColor];
 ```
-4. Respond to BRScrollBarController delegate to add text to the label
+<b>4. Respond to BRScrollBarController delegate to add text to the label</b>
 
 ```Objective-C
 - (NSString *)brScrollBarController:(BRScrollBarController *)controller textForCurrentPosition:(CGPoint)position
@@ -60,4 +60,8 @@ How to Use it:
     
     return cell.textLabel.text;
 }
+```
+<b>5. To stop showing the label call this:</b>
+```Objective-C
+brScrollbar.scrollBar.showLabel = NO;
 ```
