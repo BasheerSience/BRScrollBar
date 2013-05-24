@@ -257,9 +257,11 @@
                                                                        userInfo:nil
                                                                         repeats:NO];
         [[NSRunLoop mainRunLoop] addTimer:_animatingScrollBarWidthTimer forMode:NSRunLoopCommonModes];
+    }else{
+       [super touchesEnded:touches withEvent:event]; 
     }
     _isDragging = NO;
-    [super touchesEnded:touches withEvent:event];
+    
 }
 
 
