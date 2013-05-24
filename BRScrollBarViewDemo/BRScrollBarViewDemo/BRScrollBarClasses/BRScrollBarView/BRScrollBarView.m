@@ -17,6 +17,7 @@
 #define SCROLLBAR_MARGIN_RIGHT 1
 
 @implementation BRScrollBarView
+@synthesize hideScrollBar = _hideScrollBar;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -42,6 +43,7 @@
         
         _isDragging = NO;
         _showLabel = YES;
+        _hideScrollBar = YES;
         _scrollBarNormalWidth = self.frame.size.width;
         
       
@@ -118,10 +120,13 @@
         
         
         [self moveScrollHandleToPosition:CGPointMake(0, handlePosFactor)];
-        _fadingScrollBarTime = [NSTimer scheduledTimerWithTimeInterval:0.7
-                                                                target:self
-                                                              selector:@selector(fadeOutScrollBar)
-                                                              userInfo:nil repeats:NO];
+        if(self.hideScrollBar)
+        {
+            _fadingScrollBarTime = [NSTimer scheduledTimerWithTimeInterval:0.7
+                                                                    target:self
+                                                                  selector:@selector(fadeOutScrollBar)
+                                                                  userInfo:nil repeats:NO];
+        }
     }
     
 }
@@ -134,11 +139,13 @@
     CGFloat handleHeight = scrollView.frame.size.height / scrollFactor;
     
     [self.scrollHandle setHandleHeight:handleHeight];
-    
-    [NSTimer scheduledTimerWithTimeInterval:0.6
-                                     target:self
-                                   selector:@selector(fadeOutScrollBar)
-                                   userInfo:nil repeats:NO];
+    if(self.hideScrollBar)
+    {
+        [NSTimer scheduledTimerWithTimeInterval:0.6
+                                         target:self
+                                       selector:@selector(fadeOutScrollBar)
+                                       userInfo:nil repeats:NO];
+    }
     
    
 
@@ -298,10 +305,14 @@
     }
     
     [self.scrollLabel hideLabel];
-    _fadingScrollBarTime = [NSTimer scheduledTimerWithTimeInterval:0.7
-                                                            target:self
-                                                          selector:@selector(fadeOutScrollBar)
-                                                          userInfo:nil repeats:NO];
+    
+    if(self.hideScrollBar)
+    {
+        _fadingScrollBarTime = [NSTimer scheduledTimerWithTimeInterval:0.7
+                                                                target:self
+                                                              selector:@selector(fadeOutScrollBar)
+                                                              userInfo:nil repeats:NO];
+    }
 }
 
 - (void)animateScrollBarWidthToWider

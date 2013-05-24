@@ -24,6 +24,7 @@
 
 @property (nonatomic, readonly) BRScrollHandle *scrollHandle;              // The scrollHandle View
 @property (nonatomic, assign) BOOL showLabel;                              // should scrollView shows label with the handle
+@property (nonatomic, assign) BOOL hideScrollBar;
 @property (nonatomic, assign) id<BRScrollBarProtocol> delegate;
 
 @property (nonatomic, readonly) BRScrollLabel *scrollLabel;
