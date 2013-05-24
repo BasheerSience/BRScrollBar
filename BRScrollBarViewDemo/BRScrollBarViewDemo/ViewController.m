@@ -19,7 +19,6 @@
     brScrollBar =[BRScrollBarController initForScrollView:self.tableView
                                                onPosition:kIntBRScrollBarPositionRight
                                                  delegate:self];
-    [brScrollBar.scrollBar.scrollLabel setBackgroundImage:[UIImage imageNamed:@"black_square"]];
 }
 
 - (void)didReceiveMemoryWarning
