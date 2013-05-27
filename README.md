@@ -2,7 +2,7 @@ BRScrollBar
 ===========
 
 BRScrollBarView is a powerful scroll bar allows the user to drag a handle to faster scroll a UIScrollView or UITableView.
-BRScollBarView has a great feature, shows a label with text, so you don’t need to add indexed bar on table views or scroll views.  
+BRScollBarView has a great feature,that shows a label with text, so you don’t need to add indexed bar on your table views or on scroll views.  
 
 Screenshots:
 ===================
@@ -38,6 +38,7 @@ How to Use it:
 ```Objective-C
     [[BRScrollBarController alloc] initForScrollView:self.tableView
                                           inPosition:kIntBRScrollBarPositionLeft];
+    // dont forget to set the delegate, if you want to show the label with text
 ```
 <b>3. Change the the bar and the handle color:</b>
 
@@ -64,4 +65,8 @@ How to Use it:
 <b>5. To stop showing the label call this:</b>
 ```Objective-C
 brScrollbar.scrollBar.showLabel = NO;
+```
+<b>6. To keep the scrollbar always visible, do this:</b>
+```Objective-C
+brScrollBar.scrollBar.hideScrollBar = NO;
 ```
