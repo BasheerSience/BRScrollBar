@@ -70,8 +70,8 @@ brScrollbar.scrollBar.showLabel = NO;
 ```Objective-C
 brScrollBar.scrollBar.hideScrollBar = NO;
 ```
-Dependencies
-============
+Dependencies:
+=============
 QuartzCore framework is required.
 
 Lincense:
