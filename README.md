@@ -22,6 +22,7 @@ What Will you need:
 1. iOS 5-6
 2. ARC
 3. BRScrollView classes
+4. QuartzCore framework
 
 How to Use it:
 ==================
@@ -70,9 +71,7 @@ brScrollbar.scrollBar.showLabel = NO;
 ```Objective-C
 brScrollBar.scrollBar.hideScrollBar = NO;
 ```
-Dependencies:
-=============
-QuartzCore framework is required.
+
 
 Lincense:
 ==========
