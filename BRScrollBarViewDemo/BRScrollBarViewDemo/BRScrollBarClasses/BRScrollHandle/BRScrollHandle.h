@@ -18,6 +18,7 @@
 }
 
 @property (nonatomic, assign) CGFloat handleWidth;
+@property (nonatomic, assign) float cornerRadius;
 @property (nonatomic,readonly) CGFloat sizeDeference; // this property has the deference in size between MIN size and the
                                                       // needed size. This value will be used in the view did scroll and
                                                       // in handleDragged.

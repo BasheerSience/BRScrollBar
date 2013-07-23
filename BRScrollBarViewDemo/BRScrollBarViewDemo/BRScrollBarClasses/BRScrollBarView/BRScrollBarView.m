@@ -19,6 +19,16 @@
 @implementation BRScrollBarView
 @synthesize hideScrollBar = _hideScrollBar;
 
+-(void) setCornerRadius:(float)cornerRadius{
+    _cornerRadius = cornerRadius;
+    _scrollBarView.layer.cornerRadius = cornerRadius;
+}
+
+-(void) setOriginAlpha:(float)originAlpha{
+    _originAlpha = originAlpha;
+    _scrollBarView.alpha = originAlpha;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -37,9 +47,11 @@
 
         self.backgroundColor = [UIColor clearColor];      // set me to transparent color iam just conatiner view
         _scrollBarView.backgroundColor = [UIColor lightGrayColor];  // set the background coolor to light gray
-        
+
+        self.originAlpha = 0.5;
         _scrollBarView.alpha = 0.7;
         _scrollBarView.layer.cornerRadius = 5;
+        self.cornerRadius = 5;
         
         _isDragging = NO;
         _showLabel = YES;
@@ -96,10 +108,10 @@
       
         [_fadingScrollBarTime invalidate];
         
-            if(self.alpha != 0.5)
+            if(self.alpha != self.originAlpha)
             {
                 [UIView animateWithDuration:0.3 animations:^{
-                    self.alpha = 0.5;
+                    self.alpha = self.originAlpha;
                 }];
             }
         
