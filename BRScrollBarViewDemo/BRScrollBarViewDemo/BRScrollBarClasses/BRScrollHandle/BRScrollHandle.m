@@ -48,6 +48,11 @@
 
 #pragma mark - Public
 
+-(void) setCornerRadius:(float)cornerRadius{
+    _cornerRadius = cornerRadius;
+    self.layer.cornerRadius = cornerRadius;
+}
+
 - (void)setHandleHeight:(CGFloat )height
 {
     CGRect myRect = self.frame;

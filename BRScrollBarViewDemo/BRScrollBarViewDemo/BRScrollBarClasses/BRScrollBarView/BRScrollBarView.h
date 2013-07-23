@@ -31,6 +31,8 @@
 
 @property (nonatomic, readonly) BOOL isDragging;                           // if the user moving the handle
 @property (nonatomic, readonly) BOOL isScrollDirectionUp;
+@property (nonatomic, assign) float originAlpha;
+@property (nonatomic, assign) float cornerRadius;
 
 - (void)viewDidScroll:(UIScrollView *)scrollView;                               // called form the the Controller
 - (void)setBRScrollBarContentSizeForScrollView:(UIScrollView *)scrollView;      // called from the controller
