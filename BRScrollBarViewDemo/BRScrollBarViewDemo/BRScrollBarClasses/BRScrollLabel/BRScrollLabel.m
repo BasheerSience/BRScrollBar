@@ -121,8 +121,8 @@
     labelFrame.size.width = _textLabel.frame.size.width + 2;
     
     NSInteger labelPosiFactor  = (labelFrame.origin.x < 0)? -1:1;
-    
-    labelFrame.origin.x =  (labelFrame.size.width + DISTANCE_FROM_SCROLLBAR) * labelPosiFactor;
+    CGFloat   labelWidth       = (labelFrame.origin.x < 0)? labelFrame.size.width:0;
+    labelFrame.origin.x =  (labelWidth + DISTANCE_FROM_SCROLLBAR) * labelPosiFactor;
     
     self.frame = labelFrame;
 }
