@@ -13,8 +13,6 @@
 @interface BRScrollHandle : UIView
 {
     BRScrollBarView *_scrollBarParent;
-    CGFloat _scrollBarNormalWidth;
-    CGFloat _scrollBarNormalXPos;
 }
 
 @property (nonatomic, assign) CGFloat handleWidth;

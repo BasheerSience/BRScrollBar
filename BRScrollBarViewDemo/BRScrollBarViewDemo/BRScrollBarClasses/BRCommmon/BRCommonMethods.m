@@ -7,7 +7,7 @@
 //
 
 #import "BRCommonMethods.h"
-const int kIntBRLabelWidth        = 100;
+const int kIntBRLabelWidth        = 150;
 const int kIntBRLabelHeight       = 25;
 const int kIntBRScrollBarWidth    = 8;
 const int kIntBRScrollLabelMargin = 40;

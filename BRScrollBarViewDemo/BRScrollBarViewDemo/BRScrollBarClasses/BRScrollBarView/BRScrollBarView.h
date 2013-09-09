@@ -14,16 +14,10 @@
 @interface BRScrollBarView : UIView 
 {
     UIView *_scrollBarView;
-    NSTimer *_fadingScrollBarTime;
-    NSTimer *_animatingScrollBarWidthTimer;
-    
-    CGFloat _scrollBarNormalWidth;
-    CGFloat _scrollBarMovingOffset;
-    CGPoint _firstTouchLocation;
 }
 
 @property (nonatomic, readonly) BRScrollHandle *scrollHandle;              // The scrollHandle View
-@property (nonatomic, assign) BOOL showLabel;                              // should scrollView shows label with the handle
+@property (nonatomic, assign) BOOL showLabel;                              // should scrollView show label with the handle
 @property (nonatomic, assign) BOOL hideScrollBar;
 @property (nonatomic, assign) id<BRScrollBarProtocol> delegate;
 

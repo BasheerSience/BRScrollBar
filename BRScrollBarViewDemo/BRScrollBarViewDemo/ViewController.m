@@ -16,9 +16,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    brScrollBar =[BRScrollBarController initForScrollView:self.tableView
-                                               onPosition:kIntBRScrollBarPositionRight
-                                                 delegate:self];
+    brScrollBar = [BRScrollBarController initForScrollView:self.tableView
+                                                inPosition:kIntBRScrollBarPositionRight
+                                                  delegate:self];
 }
 
 - (void)didReceiveMemoryWarning

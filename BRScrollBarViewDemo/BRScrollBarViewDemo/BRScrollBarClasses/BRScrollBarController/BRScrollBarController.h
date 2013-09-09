@@ -13,7 +13,6 @@
 @protocol BRScrollBarControllerDelegate ;
 @interface BRScrollBarController : UIViewController  <BRScrollBarProtocol>
 {
-    UIScrollView *_scrollView;
 }
 @property (nonatomic, assign) BRScrollBarPostions scrollBarPostion;     //left or right
 @property (nonatomic, readonly) BRScrollBarView *scrollBar;
@@ -21,7 +20,8 @@
 
 - (id)initForScrollView:(UIScrollView *)scrollView;
 - (id)initForScrollView:(UIScrollView *)scrollView inPosition:(BRScrollBarPostions)position;
-+ (id)initForScrollView:(UIScrollView *)scrollView onPosition:(BRScrollBarPostions)position delegate:(id<BRScrollBarControllerDelegate>)delegate;
++ (id)initForScrollView:(UIScrollView *)scrollView inPosition:(BRScrollBarPostions)position
+               delegate:(id<BRScrollBarControllerDelegate>)delegate;
 
 
 @end
@@ -32,4 +32,4 @@
 - (NSString *)brScrollBarController:(BRScrollBarController *)controller textForCurrentPosition:(CGPoint)position;
 
 @end
-//=========================================================================================
+//=========================================================================================//

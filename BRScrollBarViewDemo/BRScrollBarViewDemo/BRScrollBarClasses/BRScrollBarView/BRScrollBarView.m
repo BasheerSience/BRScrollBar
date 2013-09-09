@@ -16,6 +16,17 @@
 #define SCROL_BAR_MARGIN_BOTTOM  1
 #define SCROLLBAR_MARGIN_RIGHT 1
 
+@interface BRScrollBarView ()
+{
+    NSTimer *_fadingScrollBarTime;
+    NSTimer *_animatingScrollBarWidthTimer;
+
+    CGFloat _scrollBarNormalWidth;
+    CGFloat _scrollBarMovingOffset;
+    CGPoint _firstTouchLocation;
+}
+@end
+
 @implementation BRScrollBarView
 @synthesize hideScrollBar = _hideScrollBar;
 
@@ -28,18 +39,7 @@
                                                                   SCROLL_BAR_MARGIN_TOP,
                                                                   frame.size.width,
                                                                   frame.size.height - SCROLL_BAR_MARGIN_TOP*2)];
-        
-        _scrollBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
-                                          UIViewAutoresizingFlexibleHeight;
-        [self addSubview:_scrollBarView];
-        
-        _isScrollDirectionUp = NO;
-
-        self.backgroundColor = [UIColor clearColor];      // set me to transparent color iam just conatiner view
-        _scrollBarView.backgroundColor = [UIColor lightGrayColor];  // set the background coolor to light gray
-        
-        _scrollBarView.alpha = 0.7;
-        _scrollBarView.layer.cornerRadius = 5;
+        [self doAdditionalSetup];
         
         _isDragging = NO;
         _showLabel = YES;
@@ -85,12 +85,25 @@
     [self.delegate scrollBarDidLayoutSubviews:self];
 }
 
+- (void)doAdditionalSetup
+{
+    _scrollBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
+    UIViewAutoresizingFlexibleHeight;
+    [self addSubview:_scrollBarView];
+    
+    _isScrollDirectionUp = NO;
+    
+    self.backgroundColor = [UIColor clearColor];      // set me to transparent color iam just conatiner view
+    _scrollBarView.backgroundColor = [UIColor lightGrayColor];  // set the background color to light gray
+    
+    _scrollBarView.alpha = 0.7;
+    _scrollBarView.layer.cornerRadius = 5;
+}
+
 #pragma mark - Public
 
 - (void) viewDidScroll:(UIScrollView *)scrollView
 {
-
-    
     if(self.isDragging == NO)
     {
       
@@ -155,7 +168,8 @@
 {
     UIImageView * bg = [[UIImageView alloc] initWithFrame:self.scrollLabel.bounds];
     UIImage * overlay = [UIImage imageNamed:imageName];
-    bg.image = [overlay stretchableImageWithLeftCapWidth:overlay.size.width/2.0 topCapHeight:overlay.size.height/2.0];
+    bg.image = [overlay stretchableImageWithLeftCapWidth:overlay.size.width/2.0
+                                            topCapHeight:overlay.size.height/2.0];
     [self.scrollLabel addSubview:bg];
     [self.scrollLabel bringSubviewToFront:bg];
 }
@@ -170,7 +184,6 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
     if(self.alpha <= 0)
     {
         [super touchesBegan:touches withEvent:event];
@@ -263,12 +276,14 @@
                                                                        selector:@selector(animateScrollBarWidthToNormal)
                                                                        userInfo:nil
                                                                         repeats:NO];
+        
         [[NSRunLoop mainRunLoop] addTimer:_animatingScrollBarWidthTimer forMode:NSRunLoopCommonModes];
-    }else{
+    }
+    else
+    {
        [super touchesEnded:touches withEvent:event]; 
     }
     _isDragging = NO;
-    
 }
 
 
@@ -317,8 +332,6 @@
 
 - (void)animateScrollBarWidthToWider
 {
-
-    
     if(self.frame.size.width >= SCROLL_BAR_TOUCHED_WIDTH)
     {
         [_animatingScrollBarWidthTimer invalidate];
@@ -392,6 +405,7 @@
 {
     CGRect labelRect = [self.scrollLabel frame];
     point = [self convertPoint:point fromView:self];
+    
     if((point.y + labelRect.size.height + 4) > self.frame.size.height)
     {
         labelRect.origin.y = self.frame.size.height - (labelRect.size.height + 4);
@@ -404,12 +418,15 @@
     {
         labelRect.origin.y = point.y;
     }
+    
     if(animated)
     {
         [UIView animateWithDuration:0.1 animations:^{
             self.scrollLabel.frame = labelRect;
         }];
-    }else{
+    }
+    else
+    {
         self.scrollLabel.frame = labelRect;
     }
 }

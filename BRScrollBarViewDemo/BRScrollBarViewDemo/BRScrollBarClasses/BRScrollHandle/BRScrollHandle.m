@@ -13,33 +13,30 @@
 
 
 #define HANDLE_MIN_HEIGHT 36
+#define HANDLE_MARGIN 2
+
+@interface BRScrollBarView ()
+{
+    CGFloat _scrollBarNormalWidth;
+    CGFloat _scrollBarNormalXPos;
+}
+@end
 
 @implementation BRScrollHandle
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 - (id) initWithScrollBar:(UIView *)scrollBar;
 {
     self = [super init];
     if(self)
     {
-        
         CGRect mainScrollBarRect = [scrollBar frame];
-        _handleWidth = mainScrollBarRect.size.width - 2;
+        _handleWidth = mainScrollBarRect.size.width - HANDLE_MARGIN;
         CGFloat xPos = 1;
         CGFloat yPos = 0;
         self.alpha = 1;
         self.frame = CGRectMake(xPos, yPos, _handleWidth, HANDLE_MIN_HEIGHT);
         self.layer.cornerRadius = 5;
         self.backgroundColor = [UIColor blackColor];
-       // self.layer.anchorPoint = CGPointMake(0.5, 1);
         self.autoresizingMask = UIViewAutoresizingFlexibleRightMargin  |
                                 UIViewAutoresizingFlexibleLeftMargin;
     }
@@ -53,6 +50,7 @@
     CGRect myRect = self.frame;
     UIView *scrollBArParent = self.superview;
     _sizeDeference = 0;
+    
     if(height > HANDLE_MIN_HEIGHT)
     {
         if(height > scrollBArParent.frame.size.height)
