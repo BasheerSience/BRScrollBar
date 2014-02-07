@@ -19,7 +19,7 @@ Screenshots:
 
 What Will you need:
 ===================
-1. iOS 5-6
+1. iOS 5-7
 2. ARC
 3. BRScrollView classes
 4. QuartzCore framework
