@@ -12,9 +12,9 @@
 
 @protocol BRScrollBarControllerDelegate ;
 @interface BRScrollBarController : UIViewController  <BRScrollBarProtocol>
-{
-}
-@property (nonatomic, assign) BRScrollBarPostions scrollBarPostion;     //left or right
+
+//left or right
+@property (nonatomic, assign) BRScrollBarPostions scrollBarPostion;
 @property (nonatomic, readonly) BRScrollBarView *scrollBar;
 @property (nonatomic, assign) id<BRScrollBarControllerDelegate> delegate;
 
