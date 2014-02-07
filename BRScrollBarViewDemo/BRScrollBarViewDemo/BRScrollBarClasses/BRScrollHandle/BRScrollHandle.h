@@ -11,19 +11,23 @@
 
 @class BRScrollBarView;
 @interface BRScrollHandle : UIView
-{
-    BRScrollBarView *_scrollBarParent;
-}
 
-@property (nonatomic, assign) CGFloat handleWidth;
-@property (nonatomic,readonly) CGFloat sizeDeference; // this property has the deference in size between MIN size and the
-                                                      // needed size. This value will be used in the view did scroll and
-                                                      // in handleDragged.
+
+@property (nonatomic, assign)  CGFloat handleWidth;
+/** This property set the deference in size between MIN size and the
+*   needed size. This value will be used in the
+*   view did scroll and
+*   in handleDragged.
+*/
+@property (nonatomic, assign, readonly) CGFloat sizeDeference;
 
 - (id)initWithScrollBar:(BRScrollBarView*)scrollBar;
+/**
+ *
+ * Dont call this to change the hight menually
+ * DONT!
+ */
 - (void)setHandleHeight:(CGFloat )height;
-
-
 @end
 
 

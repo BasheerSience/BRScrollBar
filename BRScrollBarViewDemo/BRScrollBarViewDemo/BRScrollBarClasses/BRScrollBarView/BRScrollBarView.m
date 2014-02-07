@@ -25,6 +25,7 @@
     CGFloat _scrollBarMovingOffset;
     CGPoint _firstTouchLocation;
 }
+@property (nonatomic, weak) UIView *scrollBarView;
 @end
 
 @implementation BRScrollBarView
@@ -35,10 +36,12 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        _scrollBarView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                  SCROLL_BAR_MARGIN_TOP,
-                                                                  frame.size.width,
-                                                                  frame.size.height - SCROLL_BAR_MARGIN_TOP*2)];
+        UIView *scrollBar = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                     SCROLL_BAR_MARGIN_TOP,
+                                                                     frame.size.width,
+                                                                     frame.size.height -    SCROLL_BAR_MARGIN_TOP*2)];
+        _scrollBarView = scrollBar;
+        
         [self doAdditionalSetup];
         
         _isDragging = NO;
@@ -87,17 +90,16 @@
 
 - (void)doAdditionalSetup
 {
-    _scrollBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
+    self.scrollBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
     UIViewAutoresizingFlexibleHeight;
-    [self addSubview:_scrollBarView];
+    [self addSubview:self.scrollBarView];
     
     _isScrollDirectionUp = NO;
-    
-    self.backgroundColor = [UIColor clearColor];      // set me to transparent color iam just conatiner view
-    _scrollBarView.backgroundColor = [UIColor lightGrayColor];  // set the background color to light gray
-    
-    _scrollBarView.alpha = 0.7;
-    _scrollBarView.layer.cornerRadius = 5;
+    // set container view to transparent
+    self.backgroundColor = [UIColor clearColor];
+    self.scrollBarView.backgroundColor = [UIColor lightGrayColor];
+    self.scrollBarView.alpha = 0.7;
+    self.scrollBarView.layer.cornerRadius = 5;
 }
 
 #pragma mark - Public
@@ -177,7 +179,7 @@
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     self.layer.backgroundColor = (__bridge CGColorRef)([UIColor clearColor]);
-    _scrollBarView.backgroundColor = backgroundColor;
+    self.scrollBarView.backgroundColor = backgroundColor;
 }
 
 #pragma mark - Handling touhces

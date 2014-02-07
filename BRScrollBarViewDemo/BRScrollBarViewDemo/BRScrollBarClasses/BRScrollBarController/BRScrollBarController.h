@@ -13,7 +13,13 @@
 @protocol BRScrollBarControllerDelegate ;
 @interface BRScrollBarController : UIViewController  <BRScrollBarProtocol>
 
-//left or right
+/*!
+ *  Description - The potion of the scrollBar.
+ * @code
+ *     kIntBRScrollBarPositionLeft,
+ *     kIntBRScrollBarPositionRight
+ * @endcode
+ */
 @property (nonatomic, assign) BRScrollBarPostions scrollBarPostion;
 @property (nonatomic, readonly) BRScrollBarView *scrollBar;
 @property (nonatomic, weak) id<BRScrollBarControllerDelegate> delegate;
@@ -29,6 +35,9 @@
 //=================================Protocol===============================================//
 @protocol BRScrollBarControllerDelegate <NSObject>
 @optional
+/*!
+ * Respond to BRScrollBarController delegate to add text to the label
+ */
 - (NSString *)brScrollBarController:(BRScrollBarController *)controller textForCurrentPosition:(CGPoint)position;
 
 @end

@@ -12,22 +12,21 @@
 
 @protocol BRScrollBarProtocol;
 @interface BRScrollBarView : UIView 
-{
-    UIView *_scrollBarView;
-}
 
-@property (nonatomic, readonly) BRScrollHandle *scrollHandle;              // The scrollHandle View
-@property (nonatomic, assign) BOOL showLabel;                              // should scrollView show label with the handle
+@property (nonatomic, readonly) BRScrollHandle *scrollHandle;
+/// should scrollView show label with the handle
+@property (nonatomic, assign) BOOL showLabel;
 @property (nonatomic, assign) BOOL hideScrollBar;
-@property (nonatomic, assign) id<BRScrollBarProtocol> delegate;
+@property (nonatomic, weak) id<BRScrollBarProtocol> delegate;
 
 @property (nonatomic, readonly) BRScrollLabel *scrollLabel;
-
-@property (nonatomic, readonly) BOOL isDragging;                           // if the user moving the handle
+/// if the user moving the handle
+@property (nonatomic, readonly) BOOL isDragging;
 @property (nonatomic, readonly) BOOL isScrollDirectionUp;
-
-- (void)viewDidScroll:(UIScrollView *)scrollView;                               // called form the the Controller
-- (void)setBRScrollBarContentSizeForScrollView:(UIScrollView *)scrollView;      // called from the controller
+/// called form the the Controller
+- (void)viewDidScroll:(UIScrollView *)scrollView;
+/// called from the controller
+- (void)setBRScrollBarContentSizeForScrollView:(UIScrollView *)scrollView;
 
 @end
 

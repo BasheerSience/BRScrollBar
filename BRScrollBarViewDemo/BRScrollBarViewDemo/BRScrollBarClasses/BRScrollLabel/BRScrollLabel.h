@@ -10,9 +10,7 @@
 #import "BRCommonMethods.h"
 
 @interface BRScrollLabel : UIView
-{
-    UILabel *_textLabel;
-}
+
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, assign) CGFloat labelWidth;
 

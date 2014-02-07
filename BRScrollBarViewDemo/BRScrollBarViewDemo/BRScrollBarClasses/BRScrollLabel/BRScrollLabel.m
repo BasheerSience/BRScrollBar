@@ -13,6 +13,9 @@
 #define DISTANCE_FROM_SCROLLBAR 44
 #define LABEL_FONT_SIZE 20
 
+@interface BRScrollLabel ()
+@property (nonatomic, weak) UILabel *textLabel;
+@end
 
 @implementation BRScrollLabel
 @synthesize text = _text;
@@ -29,10 +32,10 @@
         self.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|
                                 UIViewAutoresizingFlexibleTopMargin;
         
-        [self layoutTextLabel];
+        [self addTextLabel];
         
         self.clipsToBounds = YES;
-        [self addSubview:_textLabel];
+        
     }
     return self;
 }
@@ -43,14 +46,15 @@
     _textLabel.text = @"";
 }
 
-- (void)layoutTextLabel
+- (void)addTextLabel
 {
     CGRect labelRect = CGRectMake(0,
                                   0,
                                   kIntBRLabelWidth,
                                   self.frame.size.height);
-    _textLabel = [[UILabel alloc] initWithFrame:labelRect];
+    UILabel *lbl = [[UILabel alloc] initWithFrame:labelRect];
     
+    _textLabel = lbl;
     _textLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin  |
     UIViewAutoresizingFlexibleBottomMargin|
     UIViewAutoresizingFlexibleHeight      |
@@ -64,26 +68,24 @@
     _textLabel.shadowOffset = CGSizeMake(0, -1);
     
     _textLabel.textAlignment = NSTextAlignmentCenter;
-    //[_textLabel setFont:[UIFont boldSystemFontOfSize:LABEL_FONT_SIZE]];
     _textLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:LABEL_FONT_SIZE];
+    [self addSubview:_textLabel];
 }
 
 - (void)setText:(NSString *)text
 {
 
-    if(!text || text.length <= 0)
+    if(!text.length)
     {
         return;
     }
-    
-    _textLabel.text = text;
-    
+    self.textLabel.text = text;
     [self showLabel];
 }
 
 - (NSString *)text
 {
-    return _textLabel.text;
+    return self.textLabel.text;
 }
 
 - (void)showLabel
@@ -101,7 +103,6 @@
 {
     CGRect zeroRect = self.frame;
     zeroRect.size.width = 0.0;
-    //zeroRect.size.height = 0.0;
     
     [UIView animateWithDuration:0.1 animations:^{
         self.frame = zeroRect;
@@ -112,36 +113,30 @@
 // makes the label bigger or smaller
 - (void)setLabelSizeToMatchText
 {
-//    CGRect labelFrame = self.frame;
-//    labelFrame.size.width = _textLabel.frame.size.width ;
-//    
-//    self.frame = labelFrame;
-    
     CGRect labelFrame = self.frame;
-    labelFrame.size.width = _textLabel.frame.size.width + 2;
+    labelFrame.size.width = self.textLabel.frame.size.width + 2;
     
     NSInteger labelPosiFactor  = (labelFrame.origin.x < 0)? -1:1;
     CGFloat   labelWidth       = (labelFrame.origin.x < 0)? labelFrame.size.width:0;
     labelFrame.origin.x =  (labelWidth + DISTANCE_FROM_SCROLLBAR) * labelPosiFactor;
-    
     self.frame = labelFrame;
 }
 
 - (CGFloat ) labelWidth
 {
-    return _textLabel.bounds.size.width;
+    return self.textLabel.bounds.size.width;
 }
 
 - (void) setLabelWidth:(CGFloat)labelWidth
 {
     CGRect textLabelRect = _textLabel.frame;
     textLabelRect.size.width = labelWidth;
-    _textLabel.frame = textLabelRect;
+    self.textLabel.frame = textLabelRect;
 }
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
-    
+    // not implemented yet
 }
 
 @end

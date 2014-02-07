@@ -49,7 +49,6 @@ static BRScrollBarController *_instance;
         
         _scrollView = scrollView;
         _scrollView.showsVerticalScrollIndicator = NO;
-        
         [self addObservers];
         [self initScrollBarViewForPostion:position];
 
@@ -74,9 +73,7 @@ static BRScrollBarController *_instance;
     NSAssert(_scrollView.superview != nil,
              @"BRScrollBar suppose that UIScrollView class (or subclass) has a superview."
              "Please add the tableView on a super view to initialize BRSrollBar.");
-    
     [_scrollView.superview addSubview:_scrollBar];
-    
 }
 
 
