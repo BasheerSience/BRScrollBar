@@ -16,7 +16,7 @@
 //left or right
 @property (nonatomic, assign) BRScrollBarPostions scrollBarPostion;
 @property (nonatomic, readonly) BRScrollBarView *scrollBar;
-@property (nonatomic, assign) id<BRScrollBarControllerDelegate> delegate;
+@property (nonatomic, weak) id<BRScrollBarControllerDelegate> delegate;
 
 - (id)initForScrollView:(UIScrollView *)scrollView;
 - (id)initForScrollView:(UIScrollView *)scrollView inPosition:(BRScrollBarPostions)position;
