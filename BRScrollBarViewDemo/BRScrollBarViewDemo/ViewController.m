@@ -16,7 +16,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    brScrollBar = [BRScrollBarController initForScrollView:self.tableView
+    _brScrollBarController = [BRScrollBarController initForScrollView:self.tableView
                                                 inPosition:kIntBRScrollBarPositionRight
                                                   delegate:self];
 }
@@ -28,8 +28,12 @@
 }
 
 
-
+/*!
+ * return title for cell at this point
+ * to show in the BrScrollBarLabel
+ */
 #pragma mark - BRScrollBarcontroller
+
 - (NSString *)brScrollBarController:(BRScrollBarController *)controller textForCurrentPosition:(CGPoint)position
 {
     NSIndexPath *index = [self.tableView indexPathForRowAtPoint:position];
@@ -37,7 +41,9 @@
     
     return cell.textLabel.text;
 }
-#pragma mark - Table view data source
+
+
+#pragma mark - TableViewDataSource/Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -64,6 +70,8 @@
     [self configureCell:cell forIndexPath:indexPath];
     return cell;
 }
+
+#pragma mark - Private 
 
 - (void) configureCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath
 {

@@ -49,27 +49,21 @@
 {
     CGRect myRect = self.frame;
     UIView *scrollBArParent = self.superview;
-    _sizeDeference = 0;
+    _sizeDifference = 0;
     
     if(height > HANDLE_MIN_HEIGHT)
     {
         if(height > scrollBArParent.frame.size.height)
         {
             myRect.size.height = scrollBArParent.frame.size.height;
-        }
-        else
-        {
+        }else {
             myRect.size.height = height;
         }
-    }
-    else
-    {
-        CGFloat deference = HANDLE_MIN_HEIGHT - height;
-        _sizeDeference = deference;
-        
+    } else {
+        CGFloat delta = HANDLE_MIN_HEIGHT - height;
+        _sizeDifference = delta;
         myRect.size.height = HANDLE_MIN_HEIGHT;
     }
-    
     self.frame = myRect;
 }
 

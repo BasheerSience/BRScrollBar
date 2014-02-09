@@ -14,7 +14,7 @@
 #define SCROLL_BAR_TOUCHED_WIDTH 12
 #define SCROLL_BAR_MARGIN_TOP    1
 #define SCROL_BAR_MARGIN_BOTTOM  1
-#define SCROLLBAR_MARGIN_RIGHT 1
+#define SCROLLBAR_MARGIN_RIGHT   1
 
 @interface BRScrollBarView ()
 {
@@ -129,7 +129,7 @@
         else
         {
             scrollFactor = (scrollView.contentSize.height ) / (scrollView.frame.size.height -
-                                                               (self.scrollHandle.sizeDeference ));
+                                                               (self.scrollHandle.sizeDifference ));
             handlePosFactor = (scrollView.contentOffset.y ) / scrollFactor;
         }
         
@@ -150,8 +150,8 @@
 {
     CGRect superFrameRect = scrollView.frame;
     
-    CGFloat scrollFactor = scrollView.contentSize.height / superFrameRect.size.height;
-    CGFloat handleHeight = scrollView.frame.size.height / scrollFactor;
+    CGFloat scrollFactor = scrollView.contentSize.height / (superFrameRect.size.height - scrollView.contentInset.top);
+    CGFloat handleHeight = (scrollView.frame.size.height - scrollView.contentInset.top) / scrollFactor;
     
     [self.scrollHandle setHandleHeight:handleHeight];
     if(self.hideScrollBar)
@@ -178,7 +178,7 @@
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
-    self.layer.backgroundColor = (__bridge CGColorRef)([UIColor clearColor]);
+    self.layer.backgroundColor = [UIColor clearColor].CGColor;
     self.scrollBarView.backgroundColor = backgroundColor;
 }
 
@@ -394,9 +394,9 @@
 {
     CGPoint scrollHandlePos = self.scrollHandle.frame.origin;
     
-    CGFloat sizeDefrence = self.scrollHandle.sizeDeference;
-    sizeDefrence = (self.isScrollDirectionUp)?0:sizeDefrence;
-    scrollHandlePos.y += sizeDefrence;
+    CGFloat sizeDiffirence = self.scrollHandle.sizeDifference;
+    sizeDiffirence = (self.isScrollDirectionUp)?0:sizeDiffirence;
+    scrollHandlePos.y += sizeDiffirence;
     
     [self.delegate scrollBar:self draggedToPosition:scrollHandlePos];
     

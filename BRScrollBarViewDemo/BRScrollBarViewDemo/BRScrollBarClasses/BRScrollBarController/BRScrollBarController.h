@@ -14,7 +14,7 @@
 @interface BRScrollBarController : UIViewController  <BRScrollBarProtocol>
 
 /*!
- *  Description - The potion of the scrollBar.
+ *  Description - The position of the scrollBar.
  * @code
  *     kIntBRScrollBarPositionLeft,
  *     kIntBRScrollBarPositionRight

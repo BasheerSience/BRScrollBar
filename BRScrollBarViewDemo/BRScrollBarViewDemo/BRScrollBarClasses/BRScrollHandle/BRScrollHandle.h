@@ -14,17 +14,17 @@
 
 
 @property (nonatomic, assign)  CGFloat handleWidth;
-/** This property set the deference in size between MIN size and the
+/** This property set the difference in size between MIN size and the
 *   needed size. This value will be used in the
-*   view did scroll and
-*   in handleDragged.
+*   viewDidScroll: and
+*   in handleDragged methods.
 */
-@property (nonatomic, assign, readonly) CGFloat sizeDeference;
+@property (nonatomic, assign, readonly) CGFloat sizeDifference;
 
 - (id)initWithScrollBar:(BRScrollBarView*)scrollBar;
 /**
  *
- * Dont call this to change the hight menually
+ * Dont call this method to change the hight menually
  * DONT!
  */
 - (void)setHandleHeight:(CGFloat )height;

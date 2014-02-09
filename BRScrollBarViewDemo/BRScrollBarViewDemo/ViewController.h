@@ -11,9 +11,6 @@
 
 @interface ViewController : UIViewController < UITableViewDataSource, UITableViewDelegate,BRScrollBarControllerDelegate>
 
-{
-    BRScrollBarController *brScrollBar;
-}
-
+@property (nonatomic, readonly, strong) BRScrollBarController *brScrollBarController;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @end

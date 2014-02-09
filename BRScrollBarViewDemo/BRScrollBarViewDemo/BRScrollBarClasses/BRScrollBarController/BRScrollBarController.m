@@ -45,7 +45,7 @@ static BRScrollBarController *_instance;
     if(self)
     {
         NSAssert([[scrollView class]isSubclassOfClass:[UIScrollView class]],
-                 @"initForScrollView:. Must be UIScrollView class or subclass.");
+                 @"initForScrollView:. ScrollView must be of UIScrollView class or subclass.");
         
         _scrollView = scrollView;
         _scrollView.showsVerticalScrollIndicator = NO;
@@ -69,11 +69,12 @@ static BRScrollBarController *_instance;
     _scrollBar.autoresizingMask = [self autoResizingMaskForPosition:position];
     _scrollBar.delegate = self;
     
-    // Asssert if the tableview has no superview
+    // Asssert if the scrollView/tableview has no superview
     NSAssert(_scrollView.superview != nil,
              @"BRScrollBar suppose that UIScrollView class (or subclass) has a superview."
              "Please add the tableView on a super view to initialize BRSrollBar.");
     [_scrollView.superview addSubview:_scrollBar];
+    //[[[[UIApplication sharedApplication]windows] lastObject] addSubview:_scrollBar];
 }
 
 
@@ -114,7 +115,7 @@ static BRScrollBarController *_instance;
     CGRect scrollBarRect = self.scrollBar.frame;
     scrollBarRect.size.height = self.scrollView.frame.size.height;
     self.scrollBar.frame = scrollBarRect;
-    [self.scrollBar setBRScrollBarContentSizeForScrollView:_scrollView];
+    [self.scrollBar setBRScrollBarContentSizeForScrollView:self.scrollView];
 }
 
 #pragma mark - BRScrollBarProtocol
@@ -123,20 +124,22 @@ static BRScrollBarController *_instance;
 {
     // set tableView contentoffset
     CGPoint newContentOffset = [self contentOffsetFromScrollBarPosition:position];
-    // keep X but move by Y
-    [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x, newContentOffset.y)];
+    // keep X, move by Y
+    [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x,
+                                                  newContentOffset.y)];
     
     if(self.scrollBar.showLabel)
     {
         if([self.delegate respondsToSelector:@selector(brScrollBarController:textForCurrentPosition:)])
         {
             // now show the label
-            CGPoint handlePosition = [_scrollView convertPoint:self.scrollBar.scrollLabel.center
+            CGPoint handlePosition = [self.scrollView convertPoint:self.scrollBar.scrollLabel.center
                                                       fromView:self.scrollBar];
             NSString *strLabeltext = nil;
     
             // delegate should return string for this position
-            strLabeltext = [self.delegate brScrollBarController:self textForCurrentPosition:handlePosition];
+            strLabeltext = [self.delegate brScrollBarController:self
+                                         textForCurrentPosition:handlePosition];
             self.scrollBar.scrollLabel.text = strLabeltext;    // set the label string
         }
     }
@@ -150,14 +153,13 @@ static BRScrollBarController *_instance;
     CGFloat one = 0;
     CGFloat contentOffFactor = 0;
     
-    one = _scrollView.contentSize.height / (_scrollView.frame.size.height) ;
+    one = self.scrollView.contentSize.height / (self.scrollView.frame.size.height) ;
     contentOffFactor = (position.y ) * one ;
     
-    if(contentOffFactor >= _scrollView.contentSize.height)
+    if(contentOffFactor >= self.scrollView.contentSize.height)
     {
-        contentOffFactor = _scrollView.contentSize.height;
+        contentOffFactor = self.scrollView.contentSize.height;
     }
-    
     offsetToReturn.y = contentOffFactor;
     
     return offsetToReturn;
@@ -177,15 +179,12 @@ static BRScrollBarController *_instance;
     
     if(scrollBarPosition == kIntBRScrollBarPositionRight)
     {
-        pointToreturn.x = _scrollView.superview.frame.size.width - kIntBRScrollBarWidth;
+        pointToreturn.x = self.scrollView.superview.frame.size.width - kIntBRScrollBarWidth;
         pointToreturn.x -= SCROLLBAR_MARGIN_RIGHT;
-        pointToreturn.y += SCROLLBAR_MARGIN_TOP;
-    }
-    else
-    {
+    } else {
         pointToreturn.x  = SCROLLBAR_MARGIN_RIGHT;
-        pointToreturn.y += SCROLLBAR_MARGIN_TOP;
     }
+    pointToreturn.y += SCROLLBAR_MARGIN_TOP;
     
     return pointToreturn;
 }
@@ -200,9 +199,7 @@ static BRScrollBarController *_instance;
                         UIViewAutoresizingFlexibleTopMargin   |
                         UIViewAutoresizingFlexibleBottomMargin;
         
-    }
-    else
-    {
+    } else {
         autoresizeing = UIViewAutoresizingFlexibleRightMargin  |
                         UIViewAutoresizingFlexibleTopMargin    |
                         UIViewAutoresizingFlexibleBottomMargin |
@@ -210,9 +207,7 @@ static BRScrollBarController *_instance;
 
     }
     return autoresizeing;
-    
 }
-
 
 - (BOOL)isInterfaceLandscape
 {
