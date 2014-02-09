@@ -66,9 +66,7 @@
     if((self.frame.origin.x - xPosForLabel) > 0)
     {
         xPosForLabel *= -1;
-    }
-    else
-    {
+    } else {
         xPosForLabel = kIntBRScrollLabelMargin + self.frame.size.width;
     }
     CGRect labelFrame = CGRectMake(xPosForLabel,
@@ -125,9 +123,7 @@
         if(scrollView.contentOffset.y == 0)
         {
             handlePosFactor = 0;
-        }
-        else
-        {
+        } else {
             scrollFactor = (scrollView.contentSize.height ) / (scrollView.frame.size.height -
                                                                (self.scrollHandle.sizeDifference ));
             handlePosFactor = (scrollView.contentOffset.y ) / scrollFactor;
@@ -189,9 +185,7 @@
     if(self.alpha <= 0)
     {
         [super touchesBegan:touches withEvent:event];
-    }
-    else
-    {
+    } else {
         // 1- first cancel fading animation
         [_fadingScrollBarTime invalidate];
         
@@ -226,9 +220,7 @@
     {
         [super touchesMoved:touches withEvent:event];
         return;
-    }
-    else
-    {
+    } else {
         if(self.isDragging)
         {
             [_fadingScrollBarTime invalidate];
@@ -240,8 +232,7 @@
             if(location2.y > _firstTouchLocation.y)
             {
                 _isScrollDirectionUp = NO;
-            }else
-            {
+            }else {
                 _isScrollDirectionUp = YES;
             }
             
@@ -252,22 +243,19 @@
             if((yNewPos + handleFrame.size.height) > self.frame.size.height)
             {   
                 yNewPos = self.frame.size.height - handleFrame.size.height;
-            }
-            else if ((yNewPos) < 0)
+                
+            } else if ((yNewPos) < 0)
             {
                 yNewPos = 0;
             }
         
             handleFrame.origin.y = yNewPos;
-            
-           
             self.scrollHandle.frame = handleFrame;
             
             [self moveContentOffsetOfTableViewWithHandle];
         }
     }
 }
-
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -280,9 +268,7 @@
                                                                         repeats:NO];
         
         [[NSRunLoop mainRunLoop] addTimer:_animatingScrollBarWidthTimer forMode:NSRunLoopCommonModes];
-    }
-    else
-    {
+    } else {
        [super touchesEnded:touches withEvent:event]; 
     }
     _isDragging = NO;
@@ -339,9 +325,8 @@
         [_animatingScrollBarWidthTimer invalidate];
         [_fadingScrollBarTime invalidate];
         return;
-    }
-    else
-    {
+        
+    } else {
         // make the scroll bigger
 
         CGRect scrollBarRect = self.frame;
@@ -364,9 +349,7 @@
             self.scrollHandle.frame = handleRect;
         }];
     }
- 
 }
-
 
 #pragma mark - Private
 
@@ -374,20 +357,17 @@
 {
     CGRect brHandleRect = self.scrollHandle.frame;
     
-    // changing the handle frame with the user scroll
+    // changing the handle position by the user's manual scrolling
     if( (position.y + brHandleRect.size.height)  > self.frame.size.height)
     {
         position.y = self.frame.size.height - brHandleRect.size.height ;
-    }
-    else if ((position.y) < SCROLL_BAR_MARGIN_TOP)
-    {
+        
+    } else if ((position.y) < SCROLL_BAR_MARGIN_TOP) {
         position.y = SCROLL_BAR_MARGIN_TOP;
     }
     
     brHandleRect.origin.y = position.y;
-    
     self.scrollHandle.frame = brHandleRect;
-
 }
 
 - (void)moveContentOffsetOfTableViewWithHandle
@@ -399,7 +379,6 @@
     scrollHandlePos.y += sizeDiffirence;
     
     [self.delegate scrollBar:self draggedToPosition:scrollHandlePos];
-    
 }
 
 
@@ -411,13 +390,9 @@
     if((point.y + labelRect.size.height + 4) > self.frame.size.height)
     {
         labelRect.origin.y = self.frame.size.height - (labelRect.size.height + 4);
-    }
-    else if (point.y < 0)
-    {
+    } else if (point.y < 0) {
         
-    }
-    else
-    {
+    } else{
         labelRect.origin.y = point.y;
     }
     
@@ -426,13 +401,9 @@
         [UIView animateWithDuration:0.1 animations:^{
             self.scrollLabel.frame = labelRect;
         }];
-    }
-    else
-    {
+    } else {
         self.scrollLabel.frame = labelRect;
     }
 }
-
-
 
 @end

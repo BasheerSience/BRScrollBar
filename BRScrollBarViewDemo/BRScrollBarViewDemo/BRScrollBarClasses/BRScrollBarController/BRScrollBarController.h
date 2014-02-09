@@ -36,7 +36,7 @@
 @protocol BRScrollBarControllerDelegate <NSObject>
 @optional
 /*!
- * Respond to BRScrollBarController delegate to add text to the label
+ * Respond to BRScrollBarController delegate to set the label's text
  */
 - (NSString *)brScrollBarController:(BRScrollBarController *)controller textForCurrentPosition:(CGPoint)position;
 

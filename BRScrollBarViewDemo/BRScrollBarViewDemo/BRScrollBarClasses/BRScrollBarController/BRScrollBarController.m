@@ -88,13 +88,10 @@ static BRScrollBarController *_instance;
     if([keyPath isEqualToString:@"contentSize"])
     {
         [self setContentSize];
-    }
-    else if([keyPath isEqualToString:@"contentOffset"])
-    {
+        
+    } else if([keyPath isEqualToString:@"contentOffset"]) {
         [self viewDidScroll];
-    }
-    else if([keyPath isEqualToString:@"frame"])
-    {
+    } else if([keyPath isEqualToString:@"frame"]) {
         [self scrollViewDidLayoutSubviews];
     }
     
