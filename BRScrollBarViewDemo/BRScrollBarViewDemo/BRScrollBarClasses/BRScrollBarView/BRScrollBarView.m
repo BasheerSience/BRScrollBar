@@ -41,7 +41,6 @@
                                                                      frame.size.width,
                                                                      frame.size.height -    SCROLL_BAR_MARGIN_TOP*2)];
         _scrollBarView = scrollBar;
-        
         [self doAdditionalSetup];
         
         _isDragging = NO;
@@ -49,20 +48,16 @@
         _hideScrollBar = YES;
         _scrollBarNormalWidth = self.frame.size.width;
         
-      
         _scrollHandle = [[BRScrollHandle alloc] initWithScrollBar:self];
         [self addSubview:_scrollHandle];
         [self initScrollLabel];
-    
     }
     return self;
 }
 
-
 - (void) initScrollLabel
 {
     CGFloat xPosForLabel = kIntBRLabelWidth + kIntBRScrollLabelMargin;
-    
     if((self.frame.origin.x - xPosForLabel) > 0)
     {
         xPosForLabel *= -1;
@@ -109,14 +104,12 @@
       
         [_fadingScrollBarTime invalidate];
         
-            if(self.alpha != 0.5)
-            {
-                [UIView animateWithDuration:0.3 animations:^{
-                    self.alpha = 0.5;
-                }];
-            }
-        
-        
+        if(self.alpha != 0.5)
+        {
+            [UIView animateWithDuration:0.3 animations:^{
+                self.alpha = 0.5;
+            }];
+        }
         CGFloat scrollFactor = 0;
         CGFloat handlePosFactor = 0;
         
@@ -129,7 +122,6 @@
             handlePosFactor = (scrollView.contentOffset.y ) / scrollFactor;
         }
         
-        
         [self moveScrollHandleToPosition:CGPointMake(0, handlePosFactor)];
         if(self.hideScrollBar)
         {
@@ -139,16 +131,13 @@
                                                                   userInfo:nil repeats:NO];
         }
     }
-    
 }
 
 - (void)setBRScrollBarContentSizeForScrollView:(UIScrollView *)scrollView
 {
     CGRect superFrameRect = scrollView.frame;
-    
-    CGFloat scrollFactor = scrollView.contentSize.height / (superFrameRect.size.height - scrollView.contentInset.top);
-    CGFloat handleHeight = (scrollView.frame.size.height - scrollView.contentInset.top) / scrollFactor;
-    
+    CGFloat scrollFactor = scrollView.contentSize.height / superFrameRect.size.height;
+    CGFloat handleHeight = scrollView.frame.size.height  / scrollFactor;
     [self.scrollHandle setHandleHeight:handleHeight];
     if(self.hideScrollBar)
     {
@@ -157,12 +146,9 @@
                                        selector:@selector(fadeOutScrollBar)
                                        userInfo:nil repeats:NO];
     }
-    
-   
-
 }
 
-- (void)setBackgroundWithStrechableImage:(NSString *)imageName
+- (void)setBackgroundWithStretchableImage:(NSString *)imageName
 {
     UIImageView * bg = [[UIImageView alloc] initWithFrame:self.scrollLabel.bounds];
     UIImage * overlay = [UIImage imageNamed:imageName];
@@ -172,6 +158,10 @@
     [self.scrollLabel bringSubviewToFront:bg];
 }
 
+/*!
+ * Overriding setBackgroundColor to set the bg color for
+ * scrollBarView
+ */
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     self.layer.backgroundColor = [UIColor clearColor].CGColor;
@@ -186,10 +176,10 @@
     {
         [super touchesBegan:touches withEvent:event];
     } else {
-        // 1- first cancel fading animation
+        // - first cancel fading animation
         [_fadingScrollBarTime invalidate];
         
-        // 2- make the scrollBar wider
+        // - make the scrollBar wider
         [self animateScrollBarWidthToWider];
         
         UITouch *touch = [touches anyObject];
@@ -203,14 +193,11 @@
             [self.scrollLabel resetText];
             [self moveLabelToPoint:locationOftouch animated:YES];     // 1-
             [self moveContentOffsetOfTableViewWithHandle];            // 2-
-            
             if(self.showLabel)
             {
                 [self.scrollLabel showLabel];
             }
         }
-        
-       
     }
 }
 
@@ -244,14 +231,11 @@
             {   
                 yNewPos = self.frame.size.height - handleFrame.size.height;
                 
-            } else if ((yNewPos) < 0)
-            {
+            } else if ((yNewPos) < 0) {
                 yNewPos = 0;
             }
-        
             handleFrame.origin.y = yNewPos;
             self.scrollHandle.frame = handleFrame;
-            
             [self moveContentOffsetOfTableViewWithHandle];
         }
     }
@@ -267,13 +251,13 @@
                                                                        userInfo:nil
                                                                         repeats:NO];
         
-        [[NSRunLoop mainRunLoop] addTimer:_animatingScrollBarWidthTimer forMode:NSRunLoopCommonModes];
+        [[NSRunLoop mainRunLoop] addTimer:_animatingScrollBarWidthTimer
+                                  forMode:NSRunLoopCommonModes];
     } else {
        [super touchesEnded:touches withEvent:event]; 
     }
     _isDragging = NO;
 }
-
 
 #pragma mark - Animations methods
 
@@ -308,7 +292,6 @@
     }
     
     [self.scrollLabel hideLabel];
-    
     if(self.hideScrollBar)
     {
         _fadingScrollBarTime = [NSTimer scheduledTimerWithTimeInterval:0.7
@@ -318,6 +301,9 @@
     }
 }
 
+/*! 
+ * - Make the scrollBar bigger, so it can be easier to drag
+ */
 - (void)animateScrollBarWidthToWider
 {
     if(self.frame.size.width >= SCROLL_BAR_TOUCHED_WIDTH)
@@ -327,11 +313,10 @@
         return;
         
     } else {
-        // make the scroll bigger
-
+        
+        
         CGRect scrollBarRect = self.frame;
         scrollBarRect.size.width = SCROLL_BAR_TOUCHED_WIDTH;
-        
         
         _scrollBarMovingOffset = SCROLL_BAR_TOUCHED_WIDTH/2 - 2;
         if((scrollBarRect.origin.x - _scrollBarMovingOffset) < 0)
@@ -339,7 +324,6 @@
             _scrollBarMovingOffset = 0;
         }
         scrollBarRect.origin.x -= _scrollBarMovingOffset;
-        
         
         CGRect handleRect = self.scrollHandle.frame;
         handleRect.size.width = SCROLL_BAR_TOUCHED_WIDTH - 2;
@@ -353,11 +337,12 @@
 
 #pragma mark - Private
 
+/*! 
+ * - Changing the handle position by the user's manual scrolling
+ */
 - (void) moveScrollHandleToPosition:(CGPoint)position
 {
     CGRect brHandleRect = self.scrollHandle.frame;
-    
-    // changing the handle position by the user's manual scrolling
     if( (position.y + brHandleRect.size.height)  > self.frame.size.height)
     {
         position.y = self.frame.size.height - brHandleRect.size.height ;
@@ -381,7 +366,6 @@
     [self.delegate scrollBar:self draggedToPosition:scrollHandlePos];
 }
 
-
 - (void) moveLabelToPoint:(CGPoint)point animated:(BOOL)animated
 {
     CGRect labelRect = [self.scrollLabel frame];
@@ -390,9 +374,7 @@
     if((point.y + labelRect.size.height + 4) > self.frame.size.height)
     {
         labelRect.origin.y = self.frame.size.height - (labelRect.size.height + 4);
-    } else if (point.y < 0) {
-        
-    } else{
+    } else {
         labelRect.origin.y = point.y;
     }
     

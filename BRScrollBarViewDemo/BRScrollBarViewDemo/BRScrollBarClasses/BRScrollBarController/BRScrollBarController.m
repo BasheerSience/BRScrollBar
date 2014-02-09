@@ -62,7 +62,7 @@ static BRScrollBarController *_instance;
     CGPoint origin = [self scrollBarOriginForPosition:position];
     
     _scrollBar = [[BRScrollBarView alloc] initWithFrame:CGRectMake(origin.x,
-                                                                   0.0,
+                                                                   origin.y,
                                                                    kIntBRScrollBarWidth,
                                                                    _scrollView.frame.size.height)];
 
@@ -74,7 +74,6 @@ static BRScrollBarController *_instance;
              @"BRScrollBar suppose that UIScrollView class (or subclass) has a superview."
              "Please add the tableView on a super view to initialize BRSrollBar.");
     [_scrollView.superview addSubview:_scrollBar];
-    //[[[[UIApplication sharedApplication]windows] lastObject] addSubview:_scrollBar];
 }
 
 
@@ -181,7 +180,7 @@ static BRScrollBarController *_instance;
     } else {
         pointToreturn.x  = SCROLLBAR_MARGIN_RIGHT;
     }
-    pointToreturn.y += SCROLLBAR_MARGIN_TOP;
+    pointToreturn.y += self.scrollView.frame.origin.y + SCROLLBAR_MARGIN_TOP;
     
     return pointToreturn;
 }
