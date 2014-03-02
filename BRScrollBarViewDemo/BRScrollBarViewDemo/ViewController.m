@@ -71,6 +71,11 @@
     return cell;
 }
 
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return nil;
+}
+
 #pragma mark - Private 
 
 - (void) configureCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath

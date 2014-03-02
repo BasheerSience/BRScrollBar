@@ -13,7 +13,7 @@
 #define SCROLLBAR_MARGIN_TOP 2
 #define SCROLLBAR_MARGIN_RIGHT 1
 
-static BRScrollBarController *_instance;
+BRScrollBarController *_instance;
 
 @interface BRScrollBarController ()
 @property (nonatomic, weak) UIScrollView *scrollView;
@@ -29,6 +29,11 @@ static BRScrollBarController *_instance;
     _instance = [[BRScrollBarController alloc] initForScrollView:scrollView
                                                       inPosition:position ];
     _instance.delegate = delegate;
+    return _instance;
+}
+
++ (BRScrollBarController*)currentScrollBar
+{
     return _instance;
 }
 
