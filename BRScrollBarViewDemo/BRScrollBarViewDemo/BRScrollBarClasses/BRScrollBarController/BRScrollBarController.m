@@ -171,6 +171,14 @@ BRScrollBarController *_instance;
     [self.scrollBar viewDidScroll:self.scrollView];
 }
 
+- (void)scrollBarWasDeallocated
+{
+    if(_instance) {
+        // remove the instance
+        _instance = nil;
+    }
+}
+
 #pragma mark - Private
 
 // the scroll bar postion (left or right)

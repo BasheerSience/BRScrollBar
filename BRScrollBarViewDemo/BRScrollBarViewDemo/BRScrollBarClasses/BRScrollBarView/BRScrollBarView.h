@@ -35,5 +35,11 @@
 @protocol BRScrollBarProtocol <NSObject>
 - (void)scrollBar:(BRScrollBarView*)scrollBar draggedToPosition:(CGPoint)position;
 - (void)scrollBarDidLayoutSubviews:(BRScrollBarView *)scrollBarView;
+/*!
+ * inform the viewController that the scrollBar was deallocated
+ * to deallocate the viewController in case class method was called 
+ * to create it
+ */
+- (void)scrollBarWasDeallocated;
 @end
 //===================================================================//

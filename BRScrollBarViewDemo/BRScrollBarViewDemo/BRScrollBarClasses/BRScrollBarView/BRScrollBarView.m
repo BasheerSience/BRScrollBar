@@ -388,4 +388,8 @@
     }
 }
 
+- (void)dealloc
+{
+    [self.delegate scrollBarWasDeallocated];
+}
 @end
