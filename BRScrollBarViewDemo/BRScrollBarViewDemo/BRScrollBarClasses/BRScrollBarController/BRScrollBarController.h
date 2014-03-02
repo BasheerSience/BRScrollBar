@@ -21,7 +21,7 @@
  * @endcode
  */
 @property (nonatomic, assign) BRScrollBarPostions scrollBarPostion;
-@property (nonatomic, readonly) BRScrollBarView *scrollBar;
+@property (nonatomic, weak,readonly) BRScrollBarView *scrollBar;
 @property (nonatomic, weak) id<BRScrollBarControllerDelegate> delegate;
 
 /*!

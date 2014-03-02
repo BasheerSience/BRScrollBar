@@ -66,19 +66,21 @@ BRScrollBarController *_instance;
 {
     CGPoint origin = [self scrollBarOriginForPosition:position];
     
-    _scrollBar = [[BRScrollBarView alloc] initWithFrame:CGRectMake(origin.x,
-                                                                   origin.y,
-                                                                   kIntBRScrollBarWidth,
-                                                                   _scrollView.frame.size.height)];
+    BRScrollBarView *scrollBar = [[BRScrollBarView alloc] initWithFrame:CGRectMake(origin.x,
+                                                                                  origin.y,
+                                                                      kIntBRScrollBarWidth,
+                                                            self.scrollView.frame.size.height)];
+    
 
-    _scrollBar.autoresizingMask = [self autoResizingMaskForPosition:position];
-    _scrollBar.delegate = self;
+    scrollBar.autoresizingMask = [self autoResizingMaskForPosition:position];
+    scrollBar.delegate = self;
     
     // Asssert if the scrollView/tableview has no superview
-    NSAssert(_scrollView.superview != nil,
+    NSAssert(self.scrollView.superview != nil,
              @"BRScrollBar suppose that UIScrollView class (or subclass) has a superview."
              "Please add the tableView on a super view to initialize BRSrollBar.");
-    [_scrollView.superview addSubview:_scrollBar];
+    [self.scrollView.superview addSubview:scrollBar];
+    _scrollBar = scrollBar;
 }
 
 
