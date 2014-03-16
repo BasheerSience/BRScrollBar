@@ -6,6 +6,8 @@ BRScollBarView has a great feature,that shows a label with text, so you don’t 
 
 Screenshots:
 ===================
+![BRScrollBar in Action] (https://raw.github.com/BasheerSience/BRScrollBar/master/DemoGif.gif) <br>
+
 1. BRScrollBar from left<br>
 <img src="https://dl.dropboxusercontent.com/u/59060791/BRScollBar%20Images/iOS%20Simulator%20Screen%20shot%20May%2024%2C%202013%2012.50.02%20PM.png" alt="brscrollbar from left" height="330" width="240" >
 
@@ -13,7 +15,6 @@ Screenshots:
 <img src="https://dl.dropboxusercontent.com/u/59060791/BRScollBar%20Images/iOS%20Simulator%20Screen%20shot%20May%2024%2C%202013%2012.46.21%20PM.png"  height="330" width="240">
 
 3. BRScrollBar is customizable<br>
-![BRScrollBar in Action] (https://raw.github.com/BasheerSience/BRScrollBar/master/DemoGif.gif)
 <img src="https://dl.dropboxusercontent.com/u/59060791/BRScollBar%20Images/iOS%20Simulator%20Screen%20shot%20May%2024%2C%202013%2012.53.56%20PM.png" height="330" width="240">
 <img src="https://dl.dropboxusercontent.com/u/59060791/BRScollBar%20Images/iOS%20Simulator%20Screen%20shot%20May%2024%2C%202013%2012.52.45%20PM.png" height="330" width="240">
 <img src="https://dl.dropboxusercontent.com/u/59060791/BRScollBar%20Images/iOS%20Simulator%20Screen%20shot%20May%2024%2C%202013%2012.52.03%20PM.png" height="330" width="240">
