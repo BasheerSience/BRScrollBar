@@ -8,22 +8,13 @@ typedef NS_ENUM(NSUInteger, BRScrollBarPostion) {
     BRScrollBarPostionRight
 };
 
-
 @protocol BRScrollBarControllerDelegate ;
+
 @interface BRScrollBarController : UIViewController  <BRScrollBarProtocol>
 
-/*!
- *  Description - The position of the scrollBar.
- * @code
- *     kIntBRScrollBarPositionLeft,
- *     kIntBRScrollBarPositionRight
- * @endcode
- */
 @property (nonatomic, assign) BRScrollBarPostion scrollBarPostion;
-
 @property (nonatomic, weak, readonly) BRScrollBarView *scrollBar;
 @property (nonatomic, weak) id<BRScrollBarControllerDelegate> delegate;
-
 
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView;
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView

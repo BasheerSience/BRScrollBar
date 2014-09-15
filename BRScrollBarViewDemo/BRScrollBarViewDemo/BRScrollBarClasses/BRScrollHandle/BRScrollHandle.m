@@ -11,30 +11,24 @@
 #import "BRCommonMethods.h"
 #import "BRScrollBarView.h"
 
+const CGFloat kBRScrollBarScrollHandleMinWidth = 36;
+const CGFloat kBRScrollBarScrollHandleMargin   = 2;
 
-#define HANDLE_MIN_HEIGHT 36
-#define HANDLE_MARGIN 2
-
-@interface BRScrollBarView ()
-{
-    CGFloat _scrollBarNormalWidth;
-    CGFloat _scrollBarNormalXPos;
-}
+@interface BRScrollHandle ()<BRScrollBarViewPrivateProtocol>
 @end
 
 @implementation BRScrollHandle
+@synthesize sizeDifference = _sizeDifference;
 
-- (id) initWithScrollBar:(UIView *)scrollBar;
-{
+- (instancetype)initWithScrollBarView:(BRScrollBarView *)scrollBarView {
     self = [super init];
-    if(self)
-    {
-        CGRect mainScrollBarRect = [scrollBar frame];
-        _handleWidth = mainScrollBarRect.size.width - HANDLE_MARGIN;
+    if(self) {
+        CGRect mainScrollBarRect = [scrollBarView frame];
+        _handleWidth = mainScrollBarRect.size.width - kBRScrollBarScrollHandleMargin;
         CGFloat xPos = 1;
         CGFloat yPos = 0;
         self.alpha = 1;
-        self.frame = CGRectMake(xPos, yPos, _handleWidth, HANDLE_MIN_HEIGHT);
+        self.frame = CGRectMake(xPos, yPos, _handleWidth, kBRScrollBarScrollHandleMinWidth);
         self.layer.cornerRadius = 5;
         self.backgroundColor    = [UIColor blackColor];
         self.autoresizingMask   = UIViewAutoresizingFlexibleRightMargin |
@@ -43,28 +37,35 @@
     return self;
 }
 
-#pragma mark - Public
+- (void)setsizeDifference:(CGFloat)sizeDifference {
+    _sizeDifference = sizeDifference;
+}
 
-- (void)setHandleHeight:(CGFloat )height
-{
+
+#pragma mark - BRScrollBarViewPrivateProtocol
+
+- (CGFloat)sizeDifference {
+    return _sizeDifference;
+}
+
+- (void)setHandleHeight:(CGFloat )height {
     CGRect myRect = self.frame;
     UIView *scrollBArParent = self.superview;
     _sizeDifference = 0;
     
-    if(height > HANDLE_MIN_HEIGHT)
-    {
-        if(height > scrollBArParent.frame.size.height)
-        {
+    if(height > kBRScrollBarScrollHandleMinWidth) {
+        if(height > scrollBArParent.frame.size.height) {
             myRect.size.height = scrollBArParent.frame.size.height;
-        }else {
+        } else {
             myRect.size.height = height;
         }
     } else {
-        CGFloat delta = HANDLE_MIN_HEIGHT - height;
+        CGFloat delta = kBRScrollBarScrollHandleMinWidth - height;
         _sizeDifference = delta;
-        myRect.size.height = HANDLE_MIN_HEIGHT;
+        myRect.size.height = kBRScrollBarScrollHandleMinWidth;
     }
     self.frame = myRect;
 }
+
 
 @end

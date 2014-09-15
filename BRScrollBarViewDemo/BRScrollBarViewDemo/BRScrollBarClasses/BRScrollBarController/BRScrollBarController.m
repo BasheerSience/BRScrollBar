@@ -13,7 +13,6 @@
 const CGFloat kBRScrollBarMarginTop   = 2;
 const CGFloat kBRScrollBarMarginRight = 1;
 
-
 @interface BRScrollBarController ()
 @property (nonatomic, weak) UIScrollView *scrollView;
 @end
@@ -210,4 +209,5 @@ const CGFloat kBRScrollBarMarginRight = 1;
 - (void)dealloc {
     [self removeObservers];
 }
+
 @end

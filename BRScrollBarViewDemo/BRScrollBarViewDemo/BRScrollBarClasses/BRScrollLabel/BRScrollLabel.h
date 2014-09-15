@@ -11,10 +11,10 @@
 
 @interface BRScrollLabel : UIView
 
-@property (nonatomic, strong) NSString *text;
+@property (nonatomic, copy)   NSString *text;
 @property (nonatomic, assign) CGFloat labelWidth;
 
-- (void)setBackgroundImage:(UIImage*)backgroundImage;
+- (void)setBackgroundImage:(UIImage *)backgroundImage;
 - (void)resetText;
 - (void)showLabel;
 - (void)hideLabel;

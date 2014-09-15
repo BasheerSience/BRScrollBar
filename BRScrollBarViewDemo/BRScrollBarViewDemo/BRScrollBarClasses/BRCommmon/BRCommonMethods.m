@@ -18,6 +18,5 @@ const int kIntBRScrollLabelMargin = 40;
 + (BOOL)isInterfaceOrientaionLandScape {
     UIInterfaceOrientation currentOrientation = [[UIApplication sharedApplication]statusBarOrientation];
     return UIInterfaceOrientationIsLandscape(currentOrientation);
- 
 }
 @end

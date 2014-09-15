@@ -8,24 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "BRScrollHandle.h"
+#import "BRScrollLabel.h"
 #import "BRCommonMethods.h"
 
 @protocol BRScrollBarProtocol;
 @interface BRScrollBarView : UIView 
 
-@property (nonatomic, readonly) BRScrollHandle *scrollHandle;
-/// should scrollView show label with the handle
+@property (strong, readonly) BRScrollHandle *scrollHandle;
 @property (nonatomic, assign) BOOL showLabel;
 @property (nonatomic, assign) BOOL hideScrollBar;
-@property (nonatomic, weak) id<BRScrollBarProtocol> delegate;
+@property (nonatomic, weak)   id<BRScrollBarProtocol> delegate;
 
 @property (nonatomic, readonly) BRScrollLabel *scrollLabel;
-/// if the user moving the handle
 @property (nonatomic, readonly) BOOL isDragging;
-@property (nonatomic, readonly) BOOL isScrollDirectionUp;
-/// called form the the Controller
+
+
+/*! called form the the Controller */
 - (void)viewDidScroll:(UIScrollView *)scrollView;
-/// called from the controller
+/*! called from the controller */
 - (void)setBRScrollBarContentSizeForScrollView:(UIScrollView *)scrollView;
 
 @end
@@ -37,3 +37,8 @@
 - (void)scrollBarDidLayoutSubviews:(BRScrollBarView *)scrollBarView;
 @end
 //===================================================================//
+
+@protocol BRScrollBarViewPrivateProtocol <NSObject>
+@property (nonatomic, assign) CGFloat sizeDifference;
+- (void)setHandleHeight:(CGFloat)height;
+@end
