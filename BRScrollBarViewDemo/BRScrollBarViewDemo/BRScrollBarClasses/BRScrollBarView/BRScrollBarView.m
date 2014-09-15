@@ -380,16 +380,12 @@
     
     if(animated)
     {
-        [UIView animateWithDuration:0.1 animations:^{
+        //[UIView animateWithDuration:0.1 animations:^{
             self.scrollLabel.frame = labelRect;
-        }];
+        //}];
     } else {
         self.scrollLabel.frame = labelRect;
     }
 }
 
-- (void)dealloc
-{
-    [self.delegate scrollBarWasDeallocated];
-}
 @end

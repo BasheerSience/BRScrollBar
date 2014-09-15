@@ -15,17 +15,9 @@ const int kIntBRScrollLabelMargin = 40;
 
 @implementation BRCommonMethods
 
-+ (BOOL)isInterfaceOrientaionLandScape
-{
-    BOOL isLandscape  = NO;
++ (BOOL)isInterfaceOrientaionLandScape {
     UIInterfaceOrientation currentOrientation = [[UIApplication sharedApplication]statusBarOrientation];
-    
-    if(currentOrientation == UIInterfaceOrientationLandscapeLeft ||
-       currentOrientation == UIInterfaceOrientationLandscapeRight)
-    {
-        isLandscape = YES;
-    }
-    return isLandscape;
+    return UIInterfaceOrientationIsLandscape(currentOrientation);
  
 }
 @end

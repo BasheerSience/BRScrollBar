@@ -10,62 +10,54 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BRCommonMethods.h"
 
-#define SCROLLBAR_MARGIN_TOP 2
-#define SCROLLBAR_MARGIN_RIGHT 1
+const CGFloat kBRScrollBarMarginTop   = 2;
+const CGFloat kBRScrollBarMarginRight = 1;
 
-BRScrollBarController *_instance;
 
 @interface BRScrollBarController ()
 @property (nonatomic, weak) UIScrollView *scrollView;
 @end
 
-
-
 @implementation BRScrollBarController
 
-+ (id)initForScrollView:(UIScrollView *)scrollView inPosition:(BRScrollBarPostions)position
-               delegate:(id<BRScrollBarControllerDelegate>)delegate
-{
-    _instance = [[BRScrollBarController alloc] initForScrollView:scrollView
-                                                      inPosition:position ];
-    _instance.delegate = delegate;
-    return _instance;
-}
+#pragma mark - initializing
 
-+ (BRScrollBarController*)currentScrollBar
-{
-    return _instance;
-}
-
-- (id) initForScrollView:(UIScrollView *)scrollView
-{
+- (id)initWithScrollView:(UIScrollView *)scrollView {
     // init for the default position (right)
-    self = [self initForScrollView:scrollView inPosition:kIntBRScrollBarPositionRight];
+    self = [self initWithScrollView:scrollView inPosition:BRScrollBarPostionRight];
     return self;
 }
 
-- (id) initForScrollView:(UIScrollView *)scrollView inPosition:(BRScrollBarPostions)position
-{
-    self = [super init];
-    if(self)
-    {
+- (instancetype)initWithScrollView:(UIScrollView *)scrollView
+                        inPosition:(BRScrollBarPostion)position {
+    
+    if(self = [super init]) {
         NSAssert([[scrollView class]isSubclassOfClass:[UIScrollView class]],
-                 @"initForScrollView:. ScrollView must be of UIScrollView class or subclass.");
+                 @"initWithScrollView:inPosition:. ScrollView must be a UIScrollView class or subclass.");
         
         _scrollView = scrollView;
-        _scrollView.showsVerticalScrollIndicator = NO;
+        self.scrollView.showsVerticalScrollIndicator = NO;
         [self addObservers];
-        [self initScrollBarViewForPostion:position];
+        [self setupScrollBarViewForPostion:position];
 
     }
     return self;
 }
 
-
-- (void)initScrollBarViewForPostion:(BRScrollBarPostions)position
-{
-    CGPoint origin = [self scrollBarOriginForPosition:position];
++ (instancetype)setupScrollBarWithScrollView:(UIScrollView *)scrollView
+                                  inPosition:(BRScrollBarPostion)position
+                                    delegate:(id<BRScrollBarControllerDelegate>)delegate {
     
+    BRScrollBarController *instance = [[BRScrollBarController alloc] initWithScrollView:scrollView
+                                                                             inPosition:position];
+    instance.delegate = delegate;
+    return instance;
+}
+
+
+- (void)setupScrollBarViewForPostion:(BRScrollBarPostion)position {
+    
+    CGPoint origin = [self scrollBarOriginForPosition:position];
     BRScrollBarView *scrollBar = [[BRScrollBarView alloc] initWithFrame:CGRectMake(origin.x,
                                                                                   origin.y,
                                                                       kIntBRScrollBarWidth,
@@ -74,25 +66,25 @@ BRScrollBarController *_instance;
 
     scrollBar.autoresizingMask = [self autoResizingMaskForPosition:position];
     scrollBar.delegate = self;
+    _scrollBar = scrollBar;
     
     // Asssert if the scrollView/tableview has no superview
     NSAssert(self.scrollView.superview != nil,
              @"BRScrollBar suppose that UIScrollView class (or subclass) has a superview."
              "Please add the tableView on a super view to initialize BRSrollBar.");
-    [self.scrollView.superview addSubview:scrollBar];
-    _scrollBar = scrollBar;
-}
 
+    [self.scrollView.superview addSubview:scrollBar];
+    scrollBar.layer.zPosition = 1000;
+}
 
 #pragma mark - observing ContentSize, ContentOffset
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
-                       context:(void *)context
-{
-    if([keyPath isEqualToString:@"contentSize"])
-    {
+                       context:(void *)context {
+    
+    if([keyPath isEqualToString:@"contentSize"]) {
         [self setContentSize];
         
     } else if([keyPath isEqualToString:@"contentOffset"]) {
@@ -100,21 +92,17 @@ BRScrollBarController *_instance;
     } else if([keyPath isEqualToString:@"frame"]) {
         [self scrollViewDidLayoutSubviews];
     }
-    
 }
 
-- (void)setContentSize
-{
+- (void)setContentSize {
     [self.scrollBar setBRScrollBarContentSizeForScrollView:self.scrollView];
 }
 
-- (void)viewDidScroll
-{
+- (void)viewDidScroll {
     [self.scrollBar viewDidScroll:self.scrollView];
 }
 
-- (void)scrollViewDidLayoutSubviews
-{
+- (void)scrollViewDidLayoutSubviews {
     CGRect scrollBarRect = self.scrollBar.frame;
     scrollBarRect.size.height = self.scrollView.frame.size.height;
     self.scrollBar.frame = scrollBarRect;
@@ -123,18 +111,15 @@ BRScrollBarController *_instance;
 
 #pragma mark - BRScrollBarProtocol
 
-- (void)scrollBar:(BRScrollBarView *)scrollBar draggedToPosition:(CGPoint)position
-{
+- (void)scrollBar:(BRScrollBarView *)scrollBar draggedToPosition:(CGPoint)position {
     // set tableView contentoffset
     CGPoint newContentOffset = [self contentOffsetFromScrollBarPosition:position];
     // keep X, move by Y
     [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x,
                                                   newContentOffset.y)];
     
-    if(self.scrollBar.showLabel)
-    {
-        if([self.delegate respondsToSelector:@selector(brScrollBarController:textForCurrentPosition:)])
-        {
+    if(self.scrollBar.showLabel) {
+        if([self.delegate respondsToSelector:@selector(brScrollBarController:textForCurrentPosition:)]) {
             // now show the label
             CGPoint handlePosition = [self.scrollView convertPoint:self.scrollBar.scrollLabel.center
                                                       fromView:self.scrollBar];
@@ -146,65 +131,51 @@ BRScrollBarController *_instance;
             self.scrollBar.scrollLabel.text = strLabeltext;    // set the label string
         }
     }
-    
-
 }
 
-- (CGPoint) contentOffsetFromScrollBarPosition:(CGPoint)position
-{
+- (CGPoint)contentOffsetFromScrollBarPosition:(CGPoint)position {
+    
     CGPoint offsetToReturn = CGPointZero;
     CGFloat one = 0;
     CGFloat contentOffFactor = 0;
     
-    one = self.scrollView.contentSize.height / (self.scrollView.frame.size.height) ;
-    contentOffFactor = (position.y ) * one ;
+    one = self.scrollView.contentSize.height / self.scrollView.frame.size.height;
+    contentOffFactor = position.y  * one ;
     
-    if(contentOffFactor >= self.scrollView.contentSize.height)
-    {
+    if(contentOffFactor >= self.scrollView.contentSize.height) {
         contentOffFactor = self.scrollView.contentSize.height;
     }
-    offsetToReturn.y = contentOffFactor;
     
+    offsetToReturn.y = contentOffFactor;
     return offsetToReturn;
 }
 
-- (void)scrollBarDidLayoutSubviews:(BRScrollBarView *)scrollBarView
-{
+- (void)scrollBarDidLayoutSubviews:(BRScrollBarView *)scrollBarView {
     [self.scrollBar viewDidScroll:self.scrollView];
-}
-
-- (void)scrollBarWasDeallocated
-{
-    if(_instance) {
-        // remove the instance
-        _instance = nil;
-    }
 }
 
 #pragma mark - Private
 
 // the scroll bar postion (left or right)
-- (CGPoint) scrollBarOriginForPosition:(BRScrollBarPostions)scrollBarPosition
-{
+- (CGPoint)scrollBarOriginForPosition:(BRScrollBarPostion)scrollBarPosition {
+    
     CGPoint pointToreturn = CGPointZero;
     
-    if(scrollBarPosition == kIntBRScrollBarPositionRight)
-    {
+    if(scrollBarPosition == BRScrollBarPostionRight) {
         pointToreturn.x = self.scrollView.superview.frame.size.width - kIntBRScrollBarWidth;
-        pointToreturn.x -= SCROLLBAR_MARGIN_RIGHT;
+        pointToreturn.x -= kBRScrollBarMarginRight;
     } else {
-        pointToreturn.x  = SCROLLBAR_MARGIN_RIGHT;
+        pointToreturn.x  = kBRScrollBarMarginRight;
     }
-    pointToreturn.y += self.scrollView.frame.origin.y + SCROLLBAR_MARGIN_TOP;
     
+    pointToreturn.y += self.scrollView.frame.origin.y + kBRScrollBarMarginTop;
     return pointToreturn;
 }
 
-- (UIViewAutoresizing)autoResizingMaskForPosition:(BRScrollBarPostions)scrollPosition
-{
+- (UIViewAutoresizing)autoResizingMaskForPosition:(BRScrollBarPostion)scrollPosition {
+    
     UIViewAutoresizing autoresizeing = UIViewAutoresizingNone;
-    if(scrollPosition == kIntBRScrollBarPositionRight)
-    {
+    if(scrollPosition == BRScrollBarPostionRight) {
         autoresizeing = UIViewAutoresizingFlexibleHeight      |
                         UIViewAutoresizingFlexibleLeftMargin  |
                         UIViewAutoresizingFlexibleTopMargin   |
@@ -215,46 +186,28 @@ BRScrollBarController *_instance;
                         UIViewAutoresizingFlexibleTopMargin    |
                         UIViewAutoresizingFlexibleBottomMargin |
                         UIViewAutoresizingFlexibleHeight;
-
     }
+    
     return autoresizeing;
 }
 
-- (BOOL)isInterfaceLandscape
-{
-    BOOL isLandscape  = NO;
-    UIInterfaceOrientation currentOrientation = [[UIApplication sharedApplication]statusBarOrientation];
-    
-    if(currentOrientation == UIInterfaceOrientationLandscapeLeft ||
-       currentOrientation == UIInterfaceOrientationLandscapeRight)
-    {
-        isLandscape = YES;
-    }
-    return isLandscape;
-}
-
-
 #pragma mark - Adding and removing observers
 
-- (void)addObservers
-{
+- (void)addObservers {
     [self.scrollView addObserver:self forKeyPath:@"contentSize"   options:0 context:NULL];
     [self.scrollView addObserver:self forKeyPath:@"contentOffset" options:0 context:NULL];
     [self.scrollView addObserver:self forKeyPath:@"frame"         options:0 context:NULL];
 }
 
-- (void)removeObservers
-{
+- (void)removeObservers {
     [self.scrollView removeObserver:self forKeyPath:@"contentSize"];
     [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
     [self.scrollView removeObserver:self forKeyPath:@"frame"];
 }
 
-
 #pragma mark - dealloc 
 
-- (void)dealloc
-{
+- (void)dealloc {
     [self removeObservers];
 }
 @end

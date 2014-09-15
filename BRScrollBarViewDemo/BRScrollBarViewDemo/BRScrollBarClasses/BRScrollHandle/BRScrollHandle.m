@@ -36,9 +36,9 @@
         self.alpha = 1;
         self.frame = CGRectMake(xPos, yPos, _handleWidth, HANDLE_MIN_HEIGHT);
         self.layer.cornerRadius = 5;
-        self.backgroundColor = [UIColor blackColor];
-        self.autoresizingMask = UIViewAutoresizingFlexibleRightMargin  |
-                                UIViewAutoresizingFlexibleLeftMargin;
+        self.backgroundColor    = [UIColor blackColor];
+        self.autoresizingMask   = UIViewAutoresizingFlexibleRightMargin |
+                                  UIViewAutoresizingFlexibleLeftMargin;
     }
     return self;
 }
